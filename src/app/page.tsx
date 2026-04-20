@@ -13,7 +13,7 @@ export default function Home() {
           priority
         />
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <span className="rounded-full bg-slate-100 px-4 py-1 text-sm font-medium text-slate-600">
+          <span className="rounded-full bg-brand-primary px-4 py-1 text-sm font-medium text-slate-600">
             Shared layout header is now active
           </span>
           <h1 className="max-w-2xl text-4xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-5xl">
