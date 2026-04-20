@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -10,51 +8,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full text-white">
-      <div className="flex min-h-full flex-col">
-          <header className="fixed top-0 z-[1000] w-full border-b border-white/10 bg-[linear-gradient(135deg,#1e3c72_0%,#2a5298_100%)] text-white backdrop-blur-[10px]">
-            <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
-              <div className="flex items-center gap-4">
-                <div className="flex h-16 min-w-[220px] items-center">
-                  <Image
-                    src="/branding/logo/logo.svg"
-                    alt="OraxAI logo"
-                    width={220}
-                    height={64}
-                    className="h-16 w-auto max-w-[220px] object-contain object-left"
-                    priority
-                  />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold tracking-[0.2em] text-white/70 uppercase">
-                    OraxAI
-                  </p>
-                  <p className="text-base font-semibold text-white">
-                    Customer Portal
-                  </p>
-                </div>
-              </div>
-              <nav className="hidden items-center gap-8 text-sm font-medium text-white/80 md:flex">
-                <Link className="transition hover:text-white" href="/">
-                  Overview
-                </Link>
-                <Link className="transition hover:text-white" href="/">
-                  Activity
-                </Link>
-                <Link className="transition hover:text-white" href="/">
-                  Support
-                </Link>
-              </nav>
-            </div>
-          </header>
-          <main className="flex flex-1 flex-col pt-[104px]">{children}</main>
-        </div>
-      </body>
+      <body className="min-h-full">{children}</body>
     </html>
   );
 }
