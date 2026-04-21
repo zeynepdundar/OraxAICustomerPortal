@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Input } from "@/components/ui/Input";
+import { Button } from "@/components/ui/Button";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -11,7 +13,8 @@ export default function LoginPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-router.push("/dashboard");  };
+    router.push("/dashboard");
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
@@ -51,35 +54,22 @@ router.push("/dashboard");  };
 
           {/* Form */}
           <form onSubmit={handleLogin} className="space-y-5">
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
+            <Input
+              label="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+            />
 
-            {/* Password */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Password
-              </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
+            <Input
+              label="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              required
+            />
 
             {/* Forgot */}
             <div className="text-right">
@@ -91,13 +81,9 @@ router.push("/dashboard");  };
               </button>
             </div>
 
-            {/* Button */}
-            <button
-              type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md transition"
-            >
+            <Button type="submit" className="w-full h-11">
               Sign in
-            </button>
+            </Button>
           </form>
         </div>
 
