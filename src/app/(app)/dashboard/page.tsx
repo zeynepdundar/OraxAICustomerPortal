@@ -2,43 +2,41 @@
 
 import { MetricCard } from "@/components/metrics/MetricCard";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import {
+  Package,
+  ArrowDownToLine,
+  ArrowUpFromLine,
+  TrendingUp,
+} from "lucide-react";
 
 
 export default function DashboardPage() {
   const kpiCards = [
     {
       title: 'dashboard.totalStock',
-      value: 5,
-
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50',
-      aiContext: 'total_stock_overview',
+      value: 66,
+      icon: Package,
+      variant: "blue",
     },
     {
-      title: 'dashboard.inboundToday',
-      value: 5,
-
-      color: 'text-green-600',
-      bgColor: 'bg-green-50',
-      aiContext: 'todays_inbound_orders',
+      title:'dashboard.inboundToday',
+      value: 78,
+      icon: ArrowDownToLine,
+      variant: "green",
     },
     {
       title: 'dashboard.outboundToday',
-      value: 5,
-
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-50',
-      aiContext: 'todays_outbound_orders',
+      value:78,
+      icon: ArrowUpFromLine,
+      variant: "orange",
     },
     {
       title: 'dashboard.pendingOrders',
-      value: 4,
-
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-50',
-      aiContext: 'pending_orders_status',
+      value: 90,
+      icon: TrendingUp,
+      variant: "purple",
     },
-  ];
+  ] as const;
 
 
   const getStatusColor = (status: string) => {

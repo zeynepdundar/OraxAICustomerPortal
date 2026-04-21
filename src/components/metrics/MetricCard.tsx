@@ -1,47 +1,58 @@
-// /components/metrics/MetricCard.tsx
+import type { LucideIcon } from "lucide-react";
 
-import { Card, CardContent } from "@/components/ui/Card";
+type Variant = "blue" | "green" | "orange" | "purple";
 
-interface MetricCardProps {
+const variantStyles = {
+  blue: {
+    bg: "bg-blue-50",
+    icon: "text-blue-600",
+  },
+  green: {
+    bg: "bg-green-50",
+    icon: "text-green-600",
+  },
+  orange: {
+    bg: "bg-orange-50",
+    icon: "text-orange-600",
+  },
+  purple: {
+    bg: "bg-purple-50",
+    icon: "text-purple-600",
+  },
+};
+
+
+
+type MetricCardProps = {
   title: string;
   value: string | number;
-  icon?: React.ComponentType<{ className?: string }>;
-  color?: string;
-  bgColor?: string;
+  icon: LucideIcon;
+  variant?: Variant;
   aiContext?: string;
-}
+};
 
 export function MetricCard({
   title,
   value,
   icon: Icon,
-  color = "text-blue-600",
-  bgColor = "bg-blue-50",
-  aiContext,
+  variant = "blue",
 }: MetricCardProps) {
-  return (
-    <Card className="bg-white border border-gray-200">
-      <CardContent className="p-5">
-        <div className="flex items-start justify-between">
-          <div>
-            <p className="text-xs text-gray-500 mb-2">{title}</p>
-            <p className="text-2xl font-semibold text-gray-900">
-              {value}
-            </p>
-          </div>
+  const styles = variantStyles[variant];
 
-          {Icon && (
-            <div className={`p-2.5 rounded-lg ${bgColor}`}>
-              <Icon className={`w-5 h-5 ${color}`} />
-            </div>
-          )}
+  return (
+    <div className="p-5 bg-white border border-gray-200 rounded-xl">
+      <div className="flex items-start justify-between">
+        {/* Left */}
+        <div>
+          <p className="text-xs text-gray-500 mb-2">{title}</p>
+          <p className="text-2xl font-semibold text-gray-900">{value}</p>
         </div>
 
-        {aiContext && (
-          <div className="mt-4">
-          </div>
-        )}
-      </CardContent>
-    </Card>
+        {/* Right (ICON HERE) */}
+        <div className={`p-2.5 rounded-lg ${styles.bg}`}>
+          <Icon className={`w-5 h-5 ${styles.icon}`} />
+        </div>
+      </div>
+    </div>
   );
 }
