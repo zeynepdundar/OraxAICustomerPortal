@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import AppHeader from "@/components/layout/AppHeader";
 import AppSidebar from "@/components/layout/AppSidebar";
 
@@ -10,22 +10,20 @@ export default function AppLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const router = useRouter();
-  const pathname = usePathname();
+  const t = useTranslations("navigation");
 
-  const [isAIPanelOpen, setIsAIPanelOpen] = useState(false);
-  const [isCommandBarOpen, setIsCommandBarOpen] = useState(false);
+  const [, setIsCommandBarOpen] = useState(false);
 
   const menuItems = [
-    { path: "/dashboard", label: "Dashboard" },
-    { path: "/inventory", label: "Inventory" },
-    { path: "/wareview", label: "WareView" },
-    { path: "/inbound-orders", label: "Inbound Orders" },
-    { path: "/outbound-orders", label: "Outbound Orders" },
-    { path: "/reports", label: "Reports" },
-    { path: "/materials", label: "Materials" },
-    { path: "/customers", label: "Customers" },
-    { path: "/settings", label: "Settings" },
+    { path: "/dashboard", label: t("dashboard") },
+    { path: "/inventory", label: t("inventory") },
+    { path: "/wareview", label: t("wareview") },
+    { path: "/inbound-orders", label: t("inboundOrders") },
+    { path: "/outbound-orders", label: t("outboundOrders") },
+    { path: "/reports", label: t("reports") },
+    { path: "/materials", label: t("materials") },
+    { path: "/customers", label: t("customers") },
+    { path: "/settings", label: t("settings") },
   ];
 
   useEffect(() => {
@@ -39,12 +37,6 @@ export default function AppLayout({
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
-
-  const isActive = (path: string) => pathname.startsWith(path);
-
-  const handleLogout = () => {
-    router.push("/login");
-  };
 
   return (
     <div className="flex h-screen bg-gray-50">

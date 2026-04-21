@@ -1,10 +1,14 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 export default function AppHeader({
   onOpenCommandBar,
 }: {
   onOpenCommandBar: () => void;
 }) {
+  const t = useTranslations("header");
+
   return (
     <div className="h-16 bg-white border-b flex items-center justify-between px-8">
       {/* Search */}
@@ -12,7 +16,7 @@ export default function AppHeader({
         onClick={onOpenCommandBar}
         className="text-sm text-gray-500"
       >
-        Search (⌘K)
+        {t("searchCommand")}
       </button>
 
       {/* User */}

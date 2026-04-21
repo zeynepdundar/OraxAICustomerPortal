@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 type MenuItem = {
   path: string;
@@ -14,6 +15,7 @@ export default function AppSidebar({
 }) {
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations("common");
 
   const isActive = (path: string) => pathname.startsWith(path);
 
@@ -55,7 +57,7 @@ export default function AppSidebar({
           onClick={handleLogout}
           className="w-full text-left px-4 py-3 text-sm text-gray-600 hover:bg-gray-50 rounded-lg"
         >
-          Logout
+          {t("logout")}
         </button>
       </div>
     </div>

@@ -1,0 +1,27 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Overview of your warehouse operations",
+    "totalStock": "Total Stock",
+    "inboundToday": "Inbound Today",
+    "outboundToday": "Outbound Today",
+    "pendingOrders": "Pending Orders"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "inventory": "Inventory",
+    "wareview": "WareView",
+    "inboundOrders": "Inbound Orders",
+    "outboundOrders": "Outbound Orders",
+    "reports": "Reports",
+    "materials": "Materials",
+    "customers": "Customers",
+    "settings": "Settings"
+  },
+  "header": {
+    "searchCommand": "Search (⌘K)"
+  },
+  "common": {
+    "logout": "Logout"
+  }
+}

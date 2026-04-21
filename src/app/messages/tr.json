@@ -1,0 +1,27 @@
+{
+  "dashboard": {
+    "title": "Gösterge Paneli",
+    "description": "Depo operasyonlarınıza genel bakış",
+    "totalStock": "Toplam Stok",
+    "inboundToday": "Bugünkü Giriş",
+    "outboundToday": "Bugünkü Çıkış",
+    "pendingOrders": "Bekleyen Siparişler"
+  },
+  "navigation": {
+    "dashboard": "Gösterge Paneli",
+    "inventory": "Envanter",
+    "wareview": "WareView",
+    "inboundOrders": "Gelen Siparişler",
+    "outboundOrders": "Giden Siparişler",
+    "reports": "Raporlar",
+    "materials": "Malzemeler",
+    "customers": "Müşteriler",
+    "settings": "Ayarlar"
+  },
+  "header": {
+    "searchCommand": "Ara (⌘K)"
+  },
+  "common": {
+    "logout": "Çıkış Yap"
+  }
+}
