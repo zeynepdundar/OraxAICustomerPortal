@@ -46,6 +46,20 @@ export interface Material {
   stockLevel: number;
 }
 
+export interface InventoryItem {
+  id: string;
+  palletNo: string;
+  status: 'salable' | 'reserved' | 'quarantine' | 'damaged';
+  sku: string;
+  materialName: string;
+  lot: string;
+  originalQuantity: number;
+  currentQuantity: number;
+  location: string;
+  expiryDate: string;
+  customer: string;
+}
+
 export interface Customer {
   id: string;
   customerCode: string;
@@ -132,6 +146,7 @@ export const mockOutboundOrders: OutboundOrder[] = [
   },
 ];
 
+
 export const mockMaterials: Material[] = [
   {
     id: "1",
@@ -159,6 +174,113 @@ export const mockMaterials: Material[] = [
     storageType: "Ambient",
     expiryTracking: false,
     stockLevel: 1200,
+  },
+];
+
+export const mockInventory: InventoryItem[] = [
+  {
+    id: '1',
+    palletNo: 'P00000740',
+    status: 'salable',
+    sku: '1201-11026',
+    materialName: 'EVOLVIA NUTRIPIRO PLUS 3 800 GR',
+    lot: '945000049',
+    originalQuantity: 237,
+    currentQuantity: 237,
+    location: '10R03203',
+    expiryDate: '2029-12-30',
+    customer: 'Selcuk Ecza Deposu',
+  },
+  {
+    id: '2',
+    palletNo: 'P00000850',
+    status: 'salable',
+    sku: '1201-11027',
+    materialName: 'PAROL 500MG TABLET',
+    lot: '945000050',
+    originalQuantity: 500,
+    currentQuantity: 350,
+    location: '10R03204',
+    expiryDate: '2026-08-15',
+    customer: 'Avixa A.Ş.',
+  },
+  {
+    id: '3',
+    palletNo: 'P00000951',
+    status: 'quarantine',
+    sku: '1201-11028',
+    materialName: 'ASPIRIN 100MG',
+    lot: '945000051',
+    originalQuantity: 450,
+    currentQuantity: 450,
+    location: '10R03205',
+    expiryDate: '2026-05-10',
+    customer: 'Selcuk Ecza Deposu',
+  },
+  {
+    id: '4',
+    palletNo: 'P00001052',
+    status: 'reserved',
+    sku: '1201-11029',
+    materialName: 'VOLTAREN GEL 50G',
+    lot: '945000052',
+    originalQuantity: 680,
+    currentQuantity: 0,
+    location: '10R03206',
+    expiryDate: '2026-09-25',
+    customer: 'Hedef Alliance',
+  },
+  {
+    id: '5',
+    palletNo: 'P00001153',
+    status: 'salable',
+    sku: '1201-11030',
+    materialName: 'CALPOL ŞURUP 150ML',
+    lot: '945000053',
+    originalQuantity: 3200,
+    currentQuantity: 2800,
+    location: '10R03207',
+    expiryDate: '2026-04-18',
+    customer: 'Avixa A.Ş.',
+  },
+  {
+    id: '6',
+    palletNo: 'P00001254',
+    status: 'damaged',
+    sku: '1201-11031',
+    materialName: 'ANTIBIYOTIK XL 500MG',
+    lot: '945000054',
+    originalQuantity: 680,
+    currentQuantity: 580,
+    location: '10R03208',
+    expiryDate: '2026-05-02',
+    customer: 'Selcuk Ecza Deposu',
+  },
+  {
+    id: '7',
+    palletNo: 'P00001355',
+    status: 'salable',
+    sku: '1201-11032',
+    materialName: 'VITAMIN C 1000MG',
+    lot: '945000055',
+    originalQuantity: 15000,
+    currentQuantity: 15000,
+    location: '10R03209',
+    expiryDate: '2027-01-30',
+    customer: 'Hedef Alliance',
+  },
+  {
+    id: '8',
+    palletNo: 'P00001456',
+    status: 'salable',
+    sku: '1201-11033',
+    materialName: 'MAJEZIK 500MG',
+    lot: '945000056',
+    originalQuantity: 8500,
+    currentQuantity: 7200,
+    location: '10R03210',
+    expiryDate: '2026-11-20',
+    customer: 'Avixa A.Ş.',
   },
 ];
 

@@ -2,23 +2,10 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { mockMaterials } from "@/data/mockData";
+import { InventoryItem, mockInventory } from "@/data/mockData";
 import { DataTable } from "@/components/ui/DataTable";
+import { Badge } from "@/components/ui/Badge";
 
-// Types
-interface InventoryItem {
-  id: string;
-  palletNo: string;
-  status: "salable" | "reserved" | "quarantine" | "damaged";
-  sku: string;
-  materialName: string;
-  lot: string;
-  originalQuantity: number;
-  currentQuantity: number;
-  location: string;
-  expiryDate: string;
-  customer: string;
-}
 
 type SortField =
   | "palletNo"
@@ -36,9 +23,22 @@ function getSortIndicator(
   if (activeField !== sortField) return "";
   return direction === "asc" ? " ▲" : " ▼";
 }
+export type TransactionType = "Inbound" | "Outbound";
+export type StatusType = "Completed" | "In Transit" | "Delivered";
+export type InventoryStatusType = "Salable" | "Reserved" | "Quarantine"| "Damaged";
+
+function getInventoryStatusTone(status: InventoryItem["status"]) {
+  if (status === "salable") return "green";
+  if (status === "reserved") return "blue";
+  if (status === "quarantine") return "orange";
+  return "red";
+}
+
 
 export default function InventoryPage() {
   const router = useRouter();
+
+
 
   // State
   const [searchQuery, setSearchQuery] = useState("");
@@ -47,25 +47,20 @@ export default function InventoryPage() {
   const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
 
   // Mock data (derived from shared material list)
-  const inventoryData: InventoryItem[] = mockMaterials.map((material, index) => {
-    const statuses: InventoryItem["status"][] = [
-      "salable",
-      "reserved",
-      "quarantine",
-      "damaged",
-    ];
+  const inventoryData: InventoryItem[] = mockInventory.map((material, index) => {
+
 
     return {
       id: material.id,
       palletNo: `P${String(index + 740).padStart(8, "0")}`,
-      status: statuses[index % statuses.length],
-      sku: material.productCode,
-      materialName: material.productName,
-      lot: `LOT-${String(index + 49).padStart(6, "0")}`,
-      originalQuantity: material.stockLevel,
-      currentQuantity: material.stockLevel,
+      status: material.status,
+      sku: material.sku,
+      materialName: material.materialName,
+      lot: material.lot,
+      originalQuantity: material.originalQuantity,
+      currentQuantity: material.currentQuantity,
       location: `10R03${String(index + 203).padStart(3, "0")}`,
-      expiryDate: material.expiryTracking ? "2027-12-31" : "2035-12-31",
+      expiryDate: material.expiryDate ? "2027-12-31" : "2035-12-31",
       customer: "Selcuk Ecza Deposu",
     };
   });
@@ -165,7 +160,16 @@ export default function InventoryPage() {
           {
             key: "status",
             header: "Status",
-            render: (row) => <span className="capitalize">{row.status}</span>,
+            render: (row) => (
+              <Badge tone={getInventoryStatusTone(row.status)} className="capitalize">
+                {row.status}
+              </Badge>
+            ),
+          }, 
+          {
+            key: "sku",
+            header: "Sku",
+            render: (row) => <span className="capitalize">{row.sku}</span>,
           },
           {
             key: "materialName",
@@ -177,6 +181,16 @@ export default function InventoryPage() {
                 {`Material${getSortIndicator("materialName", sortField, sortDirection)}`}
               </button>
             ),
+          },
+          {
+            key: "lot",
+            header: "Lot",
+            render: (row) => <span >{row.lot}</span>,
+          },
+          {
+            key: "originalQuantity",
+            header: "Original",
+            render: (row) => <span >{row.originalQuantity}</span>,
           },
           {
             key: "currentQuantity",

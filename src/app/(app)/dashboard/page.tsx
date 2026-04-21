@@ -10,14 +10,20 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { DataTable } from "@/components/ui/DataTable";
+import { Badge } from "@/components/ui/Badge";
 import { mockKPIs, recentTransactions } from "@/data/mockData";
 
 type Transaction = (typeof recentTransactions)[number];
 
 function getStatusClass(status: Transaction["status"]) {
-  if (status === "Completed") return "bg-green-100 text-green-700";
-  if (status === "In Transit") return "bg-orange-100 text-orange-700";
-  return "bg-blue-100 text-blue-700";
+  if (status === "Completed") return "green";
+  if (status === "In Transit") return "orange";
+  return "blue";
+}
+
+function getTypeTone(type: Transaction["type"]) {
+  if (type === "Inbound") return "green";
+  return "orange";
 }
 
 export default function DashboardPage() {
@@ -73,15 +79,9 @@ export default function DashboardPage() {
             key: "type",
             header: "Type",
             render: (row: Transaction) => (
-              <span
-                className={
-                  row.type === "Inbound"
-                    ? "text-xs font-medium text-green-700"
-                    : "text-xs font-medium text-orange-700"
-                }
-              >
+              <Badge tone={getTypeTone(row.type)} variant="outline">
                 {row.type}
-              </span>
+              </Badge>
             ),
           },
           {
@@ -97,11 +97,9 @@ export default function DashboardPage() {
             key: "status",
             header: "Status",
             render: (row: Transaction) => (
-              <span
-                className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${getStatusClass(row.status)}`}
-              >
+              <Badge tone={getStatusClass(row.status)}>
                 {row.status}
-              </span>
+              </Badge>
             ),
           },
           {
