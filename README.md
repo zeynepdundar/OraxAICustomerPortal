@@ -1,12 +1,12 @@
-# 🤹 Personal Portfolio
+# OraxAI Customer Portal
 
-My personal website and portfolio, showcasing projects, experiments, and UI work.
+AI-assisted warehouse customer portal for inventory tracking and operational insights.
 
 ---
 
 ## ✨ Overview
 
-This project is a modern, responsive portfolio built to highlight my work and development approach, with a focus on clean design and smooth user experience.
+This project is a modern customer portal designed to provide visibility into warehouse operations, including inventory status, orders, and reporting.
 
 ---
 
@@ -16,17 +16,22 @@ This project is a modern, responsive portfolio built to highlight my work and de
 * React
 * TypeScript
 * Tailwind CSS
-* Motion (animations)
-
-
 
 ---
 
-## 🌐 Live
+## 🚀 Getting Started
 
-zeynepdundar.me/
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
 
 ---
-
-
 
