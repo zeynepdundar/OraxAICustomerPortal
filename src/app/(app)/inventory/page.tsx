@@ -2,9 +2,14 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { InventoryItem, mockInventory } from "@/data/mockData";
+import { InventoryItem, mockKPIInventory, mockInventory } from "@/data/mockData";
 import { DataTable } from "@/components/ui/DataTable";
 import { Badge } from "@/components/ui/Badge";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { useTranslations } from "next-intl";
+import { AlertTriangle, Box, Package, TrendingDown, TrendingUp } from "lucide-react";
+import { MetricCard } from "@/components/ui/MetricCard";
+import { AskAIButton } from "@/components/ui/AskAIButton";
 
 
 type SortField =
@@ -25,7 +30,7 @@ function getSortIndicator(
 }
 export type TransactionType = "Inbound" | "Outbound";
 export type StatusType = "Completed" | "In Transit" | "Delivered";
-export type InventoryStatusType = "Salable" | "Reserved" | "Quarantine"| "Damaged";
+export type InventoryStatusType = "Salable" | "Reserved" | "Quarantine" | "Damaged";
 
 function getInventoryStatusTone(status: InventoryItem["status"]) {
   if (status === "salable") return "green";
@@ -37,6 +42,7 @@ function getInventoryStatusTone(status: InventoryItem["status"]) {
 
 export default function InventoryPage() {
   const router = useRouter();
+  const t = useTranslations("inventory");
 
 
 
@@ -107,18 +113,55 @@ export default function InventoryPage() {
     router.push("/wareview");
   };
 
+  const kpiInventoryCards = [
+    {
+      title: t("totalStock"),
+      value: mockKPIInventory.totalStock,
+      icon: Package,
+      variant: "blue",
+    },
+    {
+      title: t("totalPallets"),
+      value: mockKPIInventory.salableStock,
+      icon: Box,
+      variant: "purple",
+    },
+    {
+      title: t("salableStock"),
+      value: mockKPIInventory.reservedStock,
+      icon: TrendingUp,
+      variant: "green",
+    },
+    {
+      title: t("reservedStock"),
+      value: mockKPIInventory.reservedStock,
+      icon: TrendingDown,
+      variant: "blue",
+    },
+    {
+      title: t("expiringSoonStock"),
+      value: mockKPIInventory.quarantineStock,
+      icon: AlertTriangle,
+      variant: "yellow",
+    },
+  ] as const;
+
   return (
     <div className="p-8 space-y-6">
-      {/* Header */}
-      <div>
-        <h1 className="text-2xl font-semibold text-gray-900">
-          Inventory
-        </h1>
-        <p className="text-sm text-gray-500 mt-1">
-          Manage warehouse stock and pallets
-        </p>
-      </div>
+      <SectionHeader
+        title={t("title")}
+        description={t("description")}
+      />
 
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">        
+        {kpiInventoryCards.map((kpi) => (
+        <MetricCard
+          key={kpi.title}
+          {...kpi}
+          action={<AskAIButton context={"fbdf"} />}
+        />
+      ))}
+      </div>
       {/* Filters */}
       <div className="bg-white border rounded-xl p-4 space-y-4">
         <input
@@ -165,7 +208,7 @@ export default function InventoryPage() {
                 {row.status}
               </Badge>
             ),
-          }, 
+          },
           {
             key: "sku",
             header: "Sku",

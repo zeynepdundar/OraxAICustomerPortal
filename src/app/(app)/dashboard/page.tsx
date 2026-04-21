@@ -1,6 +1,6 @@
 "use client";
 
-import { MetricCard } from "@/components/metrics/MetricCard";
+import { MetricCard } from "@/components/ui/MetricCard";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { useTranslations } from "next-intl";
 import {

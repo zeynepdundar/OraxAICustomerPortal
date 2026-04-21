@@ -1,6 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 
-type Variant = "blue" | "green" | "orange" | "purple";
+type Variant = "blue" | "green" | "orange" | "purple" | "yellow";
 
 const variantStyles = {
   blue: {
@@ -18,6 +18,10 @@ const variantStyles = {
   purple: {
     bg: "bg-purple-50",
     icon: "text-purple-600",
+  },
+  yellow: {
+    bg: "bg-yellow-50",
+    icon: "text-yellow-600",
   },
 };
 

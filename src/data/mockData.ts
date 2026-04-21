@@ -146,7 +146,6 @@ export const mockOutboundOrders: OutboundOrder[] = [
   },
 ];
 
-
 export const mockMaterials: Material[] = [
   {
     id: "1",
@@ -325,6 +324,14 @@ export const mockKPIs = {
   inboundToday: 12,
   outboundToday: 8,
   pendingOrders: 15,
+};
+
+export const mockKPIInventory = {
+  totalStock: 1950,
+  salableStock: 12,
+  reservedStock: 8,
+  quarantineStock: 15,
+  damagedStock: 15,
 };
 
 export const mockChartData = {
