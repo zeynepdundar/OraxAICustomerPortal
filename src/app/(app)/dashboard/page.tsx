@@ -12,6 +12,7 @@ import {
 import { DataTable } from "@/components/ui/DataTable";
 import { Badge } from "@/components/ui/Badge";
 import { mockKPIs, recentTransactions } from "@/data/mockData";
+import { AskAIButton } from "@/components/ui/AskAIButton";
 
 type Transaction = (typeof recentTransactions)[number];
 
@@ -64,7 +65,11 @@ export default function DashboardPage() {
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {kpiCards.map((kpi) => (
-          <MetricCard key={kpi.title} {...kpi} />
+          <MetricCard
+            key={kpi.title}
+            {...kpi}
+            action={<AskAIButton context={"fbdf"} />}
+          />
         ))}
       </div>
 

@@ -28,7 +28,7 @@ type MetricCardProps = {
   value: string | number;
   icon: LucideIcon;
   variant?: Variant;
-  aiContext?: string;
+  action?: React.ReactNode;
 };
 
 export function MetricCard({
@@ -36,11 +36,13 @@ export function MetricCard({
   value,
   icon: Icon,
   variant = "blue",
+  action
 }: MetricCardProps) {
   const styles = variantStyles[variant];
 
   return (
     <div className="p-5 bg-white border border-gray-200 rounded-xl">
+      {/* TOP */}
       <div className="flex items-start justify-between">
         {/* Left */}
         <div>
@@ -48,11 +50,16 @@ export function MetricCard({
           <p className="text-2xl font-semibold text-gray-900">{value}</p>
         </div>
 
-        {/* Right (ICON HERE) */}
+        {/* Right (ICON) */}
         <div className={`p-2.5 rounded-lg ${styles.bg}`}>
           <Icon className={`w-5 h-5 ${styles.icon}`} />
         </div>
       </div>
+      {action && (
+        <div className="mt-4 flex justify-end">
+          {action}
+        </div>
+      )}
     </div>
   );
 }
