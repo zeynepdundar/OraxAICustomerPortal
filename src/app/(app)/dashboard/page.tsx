@@ -9,7 +9,16 @@ import {
   ArrowUpFromLine,
   TrendingUp,
 } from "lucide-react";
+import { DataTable } from "@/components/ui/DataTable";
+import { mockKPIs, recentTransactions } from "@/data/mockData";
 
+type Transaction = (typeof recentTransactions)[number];
+
+function getStatusClass(status: Transaction["status"]) {
+  if (status === "Completed") return "bg-green-100 text-green-700";
+  if (status === "In Transit") return "bg-orange-100 text-orange-700";
+  return "bg-blue-100 text-blue-700";
+}
 
 export default function DashboardPage() {
   const t = useTranslations("dashboard");
@@ -17,32 +26,29 @@ export default function DashboardPage() {
   const kpiCards = [
     {
       title: t("totalStock"),
-      value: 66,
+      value: mockKPIs.totalStock,
       icon: Package,
       variant: "blue",
     },
     {
       title: t("inboundToday"),
-      value: 78,
+      value: mockKPIs.inboundToday,
       icon: ArrowDownToLine,
       variant: "green",
     },
     {
       title: t("outboundToday"),
-      value: 78,
+      value: mockKPIs.outboundToday,
       icon: ArrowUpFromLine,
       variant: "orange",
     },
     {
       title: t("pendingOrders"),
-      value: 90,
+      value: mockKPIs.pendingOrders,
       icon: TrendingUp,
       variant: "purple",
     },
   ] as const;
-
-
-
 
   return (
     <div className="p-8 space-y-6">
@@ -56,6 +62,62 @@ export default function DashboardPage() {
         ))}
       </div>
 
+      <DataTable
+        data={recentTransactions}
+        columns={[
+          {
+            key: "date",
+            header: "Date",
+          },
+          {
+            key: "type",
+            header: "Type",
+            render: (row: Transaction) => (
+              <span
+                className={
+                  row.type === "Inbound"
+                    ? "text-xs font-medium text-green-700"
+                    : "text-xs font-medium text-orange-700"
+                }
+              >
+                {row.type}
+              </span>
+            ),
+          },
+          {
+            key: "customer",
+            header: "Customer",
+          },
+          {
+            key: "quantity",
+            header: "Quantity",
+            className: "text-gray-600",
+          },
+          {
+            key: "status",
+            header: "Status",
+            render: (row: Transaction) => (
+              <span
+                className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${getStatusClass(row.status)}`}
+              >
+                {row.status}
+              </span>
+            ),
+          },
+          {
+            key: "actions",
+            header: "Actions",
+            render: () => (
+              <div className="flex justify-end">
+                <button className="text-sm text-gray-600 hover:text-black">
+                  View
+                </button>
+              </div>
+            ),
+            className: "text-right",
+          },
+        ]}
+      />
     </div>
   );
 }

@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { mockMaterials } from "@/data/mockData";
+import { DataTable } from "@/components/ui/DataTable";
 
 // Types
 interface InventoryItem {
@@ -26,6 +28,15 @@ type SortField =
 
 type SortDirection = "asc" | "desc";
 
+function getSortIndicator(
+  activeField: SortField,
+  sortField: SortField,
+  direction: SortDirection
+) {
+  if (activeField !== sortField) return "";
+  return direction === "asc" ? " ▲" : " ▼";
+}
+
 export default function InventoryPage() {
   const router = useRouter();
 
@@ -35,35 +46,29 @@ export default function InventoryPage() {
   const [sortField, setSortField] = useState<SortField>("materialName");
   const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
 
-  // Mock data
-  const inventoryData: InventoryItem[] = [
-    {
-      id: "1",
-      palletNo: "P00000740",
-      status: "salable",
-      sku: "1201-11026",
-      materialName: "EVOLVIA NUTRIPIRO PLUS 3 800 GR",
-      lot: "945000049",
-      originalQuantity: 237,
-      currentQuantity: 237,
-      location: "10R03203",
-      expiryDate: "2029-12-30",
+  // Mock data (derived from shared material list)
+  const inventoryData: InventoryItem[] = mockMaterials.map((material, index) => {
+    const statuses: InventoryItem["status"][] = [
+      "salable",
+      "reserved",
+      "quarantine",
+      "damaged",
+    ];
+
+    return {
+      id: material.id,
+      palletNo: `P${String(index + 740).padStart(8, "0")}`,
+      status: statuses[index % statuses.length],
+      sku: material.productCode,
+      materialName: material.productName,
+      lot: `LOT-${String(index + 49).padStart(6, "0")}`,
+      originalQuantity: material.stockLevel,
+      currentQuantity: material.stockLevel,
+      location: `10R03${String(index + 203).padStart(3, "0")}`,
+      expiryDate: material.expiryTracking ? "2027-12-31" : "2035-12-31",
       customer: "Selcuk Ecza Deposu",
-    },
-    {
-      id: "2",
-      palletNo: "P00000850",
-      status: "reserved",
-      sku: "1201-11027",
-      materialName: "PAROL 500MG TABLET",
-      lot: "945000050",
-      originalQuantity: 500,
-      currentQuantity: 350,
-      location: "10R03204",
-      expiryDate: "2026-08-15",
-      customer: "Avixa A.Ş.",
-    },
-  ];
+    };
+  });
 
   // Filtering + Sorting
   const data = useMemo(() => {
@@ -141,83 +146,73 @@ export default function InventoryPage() {
         </select>
       </div>
 
-      {/* Table */}
-      <div className="bg-white border rounded-xl overflow-hidden">
-        <table className="w-full text-sm">
-          <thead className="bg-gray-50 border-b">
-            <tr>
-              <th
+      <DataTable
+        data={data}
+        emptyMessage="No results found"
+        columns={[
+          {
+            key: "palletNo",
+            header: (
+              <button
                 onClick={() => handleSort("palletNo")}
-                className="px-4 py-3 text-left cursor-pointer"
+                className="cursor-pointer"
               >
-                Pallet
-              </th>
-              <th className="px-4 py-3 text-left">Status</th>
-              <th
+                {`Pallet${getSortIndicator("palletNo", sortField, sortDirection)}`}
+              </button>
+            ),
+            render: (row) => <span className="font-mono">{row.palletNo}</span>,
+          },
+          {
+            key: "status",
+            header: "Status",
+            render: (row) => <span className="capitalize">{row.status}</span>,
+          },
+          {
+            key: "materialName",
+            header: (
+              <button
                 onClick={() => handleSort("materialName")}
-                className="px-4 py-3 text-left cursor-pointer"
+                className="cursor-pointer"
               >
-                Material
-              </th>
-              <th
+                {`Material${getSortIndicator("materialName", sortField, sortDirection)}`}
+              </button>
+            ),
+          },
+          {
+            key: "currentQuantity",
+            header: (
+              <button
                 onClick={() => handleSort("currentQuantity")}
-                className="px-4 py-3 text-right cursor-pointer"
+                className="cursor-pointer"
               >
-                Quantity
-              </th>
-              <th className="px-4 py-3 text-right">Actions</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {data.map((item) => (
-              <tr key={item.id} className="border-b hover:bg-gray-50">
-                <td className="px-4 py-3 font-mono">
-                  {item.palletNo}
-                </td>
-
-                <td className="px-4 py-3 capitalize">
-                  {item.status}
-                </td>
-
-                <td className="px-4 py-3">
-                  {item.materialName}
-                </td>
-
-                <td className="px-4 py-3 text-right font-semibold">
-                  {item.currentQuantity}
-                </td>
-
-                <td className="px-4 py-3 text-right">
-                  <div className="flex justify-end gap-2">
-                    <button className="px-2 py-1 text-xs border rounded hover:bg-gray-100">
-                      View
-                    </button>
-
-                    <button
-                      onClick={goToWareview}
-                      className="px-2 py-1 text-xs border rounded hover:bg-blue-100 text-blue-600"
-                    >
-                      WareView
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-
-            {data.length === 0 && (
-              <tr>
-                <td
-                  colSpan={5}
-                  className="text-center py-10 text-gray-500"
+                {`Quantity${getSortIndicator("currentQuantity", sortField, sortDirection)}`}
+              </button>
+            ),
+            className: "text-right",
+            render: (row) => (
+              <span className="font-semibold">{row.currentQuantity}</span>
+            ),
+          },
+          {
+            key: "actions",
+            header: <span className="w-full inline-block text-right">Actions</span>,
+            className: "text-right",
+            render: () => (
+              <div className="flex justify-end gap-2">
+                <button className="px-2 py-1 text-xs border rounded hover:bg-gray-100">
+                  View
+                </button>
+                <button
+                  onClick={goToWareview}
+                  className="px-2 py-1 text-xs border rounded hover:bg-blue-100 text-blue-600"
                 >
-                  No results found
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+                  WareView
+                </button>
+              </div>
+            ),
+          },
+        ]}
+      />
     </div>
   );
 }
