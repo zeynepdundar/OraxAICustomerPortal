@@ -114,7 +114,7 @@ export default function SettingsPage() {
         </div>
       ) : null}
 
-      <div className="max-w-4xl space-y-4">
+      <div className="space-y-4">
         <Card className="p-6">
           <div className="flex items-center gap-3 mb-5">
             <User className="w-5 h-5 text-gray-600" />

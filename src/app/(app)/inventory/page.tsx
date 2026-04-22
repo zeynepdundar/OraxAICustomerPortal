@@ -7,9 +7,12 @@ import { DataTable } from "@/components/ui/DataTable";
 import { Badge } from "@/components/ui/Badge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { useTranslations } from "next-intl";
-import { AlertTriangle, Box, Package, TrendingDown, TrendingUp } from "lucide-react";
+import { AlertTriangle, Box, Package, Search, TrendingDown, TrendingUp } from "lucide-react";
 import { MetricCard } from "@/components/ui/MetricCard";
 import { AskAIButton } from "@/components/ui/AskAIButton";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Input } from "@/components/ui/Input";
 
 
 type SortField =
@@ -151,38 +154,111 @@ export default function InventoryPage() {
       <SectionHeader
         title={t("title")}
         description={t("description")}
+        actions={
+          <>
+            <Button variant="outline">
+              Export
+            </Button>
+          </>
+        }
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">        
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         {kpiInventoryCards.map((kpi) => (
-        <MetricCard
-          key={kpi.title}
-          {...kpi}
-          action={<AskAIButton context={"fbdf"} />}
-        />
-      ))}
+          <MetricCard
+            key={kpi.title}
+            {...kpi}
+            action={<AskAIButton context={"fbdf"} />}
+          />
+        ))}
       </div>
       {/* Filters */}
-      <div className="bg-white border rounded-xl p-4 space-y-4">
-        <input
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search material or lot..."
-          className="w-full px-4 py-2 border rounded-lg text-sm"
-        />
+      <Card className="p-5">
+        <div className="space-y-5">
+          {/* SEARCH */}
+          <div>
+            <label className="block text-xs font-medium text-gray-700 mb-2">
+              {t("common.search")}
+            </label>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={t("inventory.search")}
+                className="pl-10"
+              />
+            </div>
+          </div>
 
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="border px-3 py-2 rounded-lg text-sm"
-        >
-          <option value="all">All Status</option>
-          <option value="salable">Salable</option>
-          <option value="reserved">Reserved</option>
-          <option value="quarantine">Quarantine</option>
-          <option value="damaged">Damaged</option>
-        </select>
-      </div>
+          {/* FILTERS */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
+
+            {/* Pallet */}
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-2">
+                {t("inventory.filterPalletNo")}
+              </label>
+              <Input
+                value={""}
+                onChange={(e) => { }}
+                placeholder={t("inventory.enterPalletNo")}
+              />
+            </div>
+
+            {/* SKU */}
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-2">
+                {t("inventory.filterSku")}
+              </label>
+              <Input
+                value={""}
+                onChange={(e) => { }}
+                placeholder={t("inventory.enterSku")}
+              />
+            </div>
+
+            {/* Lot */}
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-2">
+                {t("inventory.filterLot")}
+              </label>
+              <Input
+                value={"lotFilter"}
+                onChange={(e) => { }}
+                placeholder={t("inventory.enterLot")}
+              />
+            </div>
+
+            {/* Status */}
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-2">
+                {t("inventory.filterStatus")}
+              </label>
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="w-full h-10 px-3 bg-white border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">{t("inventory.allStatus")}</option>
+                <option value="salable">{t("inventory.salable")}</option>
+                <option value="reserved">{t("inventory.reserved")}</option>
+                <option value="quarantine">{t("inventory.quarantine")}</option>
+                <option value="damaged">{t("inventory.damaged")}</option>
+              </select>
+            </div>
+
+            {/* BUTTON */}
+            <div className="flex items-end">
+              <Button className="w-full h-10 bg-blue-600 hover:bg-blue-700 text-white">
+                {t("common.filter")}
+              </Button>
+            </div>
+
+          </div>
+        </div>
+      </Card>
+
 
       <DataTable
         data={data}
