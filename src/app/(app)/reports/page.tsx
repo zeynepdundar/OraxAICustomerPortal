@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
 import { mockChartData, mockMaterials } from "@/data/mockData";
+import { SummaryCardItem } from "@/components/ui/SummaryCardItem";
 
 ChartJS.register(
   CategoryScale,
@@ -78,6 +79,13 @@ export default function ReportsPage() {
   const [dateTo, setDateTo] = useState("");
   const [product, setProduct] = useState("all");
   const [orderType, setOrderType] = useState("all");
+
+  const summaryData = [
+    { label: t("totalOrders"), value: 156 },
+    { label: t("inboundOrders"), value: 89, color: "text-green-600" },
+    { label: t("outboundOrders"), value: 67, color: "text-orange-600" },
+    { label: t("totalItems"), value: "2,450", color: "text-blue-600" },
+  ];
 
   const lineData = useMemo(
     () => ({
@@ -352,24 +360,19 @@ export default function ReportsPage() {
       </div>
 
       <Card className="p-5 bg-white border border-gray-200">
-        <h3 className="text-sm font-semibold text-gray-900 mb-4">{t("summary")}</h3>
+        <h3 className="text-sm font-semibold text-gray-900 mb-4">
+          {t("summary")}
+        </h3>
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="p-4 bg-gray-50 rounded-lg text-center">
-            <p className="text-xs text-gray-500 mb-1">{t("totalOrders")}</p>
-            <p className="text-2xl font-semibold text-gray-900">156</p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-lg text-center">
-            <p className="text-xs text-gray-500 mb-1">{t("inboundOrders")}</p>
-            <p className="text-2xl font-semibold text-green-600">89</p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-lg text-center">
-            <p className="text-xs text-gray-500 mb-1">{t("outboundOrders")}</p>
-            <p className="text-2xl font-semibold text-orange-600">67</p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-lg text-center">
-            <p className="text-xs text-gray-500 mb-1">{t("totalItems")}</p>
-            <p className="text-2xl font-semibold text-blue-600">2,450</p>
-          </div>
+          {summaryData.map((item, i) => (
+            <SummaryCardItem
+              key={i}
+              label={item.label}
+              value={item.value}
+              valueColor={item.color}
+            />
+          ))}
         </div>
       </Card>
     </div>
