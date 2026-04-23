@@ -59,6 +59,24 @@
     "noResults": "Müşteri bulunamadı",
     "noFilterResults": "Aktif filtrelerle sonuç bulunamadı"
   },
+  "materials": {
+    "title": "Malzemeler",
+    "reportName": "Malzeme tanimlarini ve ITS takibini yonetin",
+    "newMaterial": "Yeni Malzeme",
+    "filterSearch": "Ara",
+    "filterSearchPlaceholder": "SKU veya malzeme adina gore ara",
+    "filterStatus": "ITS Takibi",
+    "filterStatusAll": "Tum",
+    "filterItsTrackingYes": "Evet",
+    "filterItsTrackingNo": "Hayir",
+    "resultsFound": "sonuc bulundu",
+    "sku": "SKU",
+    "materialName": "Malzeme Adi",
+    "itsTrackingQuestion": "ITS Takibi?",
+    "yes": "Evet",
+    "no": "Hayir",
+    "noResults": "Malzeme bulunamadi"
+  },
   "settings": {
     "title": "Ayarlar",
     "description": "Hesap, kullanıcı ve sistem tercihlerini yönetin",

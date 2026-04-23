@@ -59,6 +59,24 @@
     "noResults": "No customers found",
     "noFilterResults": "No results found with active filters"
   },
+  "materials": {
+    "title": "Materials",
+    "reportName": "Manage material definitions and ITS tracking",
+    "newMaterial": "New Material",
+    "filterSearch": "Search",
+    "filterSearchPlaceholder": "Search by SKU or material name",
+    "filterStatus": "ITS Tracking",
+    "filterStatusAll": "All",
+    "filterItsTrackingYes": "Yes",
+    "filterItsTrackingNo": "No",
+    "resultsFound": "results found",
+    "sku": "SKU",
+    "materialName": "Material Name",
+    "itsTrackingQuestion": "ITS Tracking?",
+    "yes": "Yes",
+    "no": "No",
+    "noResults": "No materials found"
+  },
   "settings": {
     "title": "Settings",
     "description": "Manage your account, users, and system preferences",
