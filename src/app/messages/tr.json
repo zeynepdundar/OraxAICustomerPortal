@@ -34,7 +34,30 @@
   },
   "common": {
     "logout": "Çıkış Yap",
-    "cancel": "İptal"
+    "cancel": "İptal",
+    "search": "Ara",
+    "searchPlaceHolder": "Pallet numarası, SKU veya lot numarasına göre ara",
+    "export": "Dışa Aktar",
+    "filter": "Filtrele",
+    "actions": "İşlemler",
+    "view": "Görüntüle",
+    "edit": "Düzenle",
+    "delete": "Sil"
+  },
+  "customers": {
+    "title": "Müşteri İşlemleri",
+    "description": "Müşteri veritabanını ve iletişim bilgilerini yönetin",
+    "subtitle": "Müşteri kayıtlarını görüntüleyin ve yönetin",
+    "newCustomer": "Yeni Müşteri",
+    "searchPlaceholder": "Müşteri kodu veya müşteri adına göre ara",
+    "customerCode": "Müşteri Kodu",
+    "customerName": "Müşteri Adı",
+    "viewDetail": "Müşteri detayını görüntüle",
+    "editCustomer": "Müşteriyi düzenle",
+    "recordInformation": "Kayıt bilgisi",
+    "deleteWarning": "Silme işlemi onay gerektirir",
+    "noResults": "Müşteri bulunamadı",
+    "noFilterResults": "Aktif filtrelerle sonuç bulunamadı"
   },
   "settings": {
     "title": "Ayarlar",

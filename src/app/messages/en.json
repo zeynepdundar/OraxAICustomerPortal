@@ -34,7 +34,30 @@
   },
   "common": {
     "logout": "Logout",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "search": "Search",
+    "searchPlaceHolder": "Search by pallet number, SKU, or lot",
+    "export": "Export",
+    "filter": "Filter",
+    "actions": "Actions",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "customers": {
+    "title": "Customers",
+    "description": "Manage customers and contacts",
+    "subtitle": "View and manage customer records",
+    "newCustomer": "New Customer",
+    "searchPlaceholder": "Search by customer code or customer name",
+    "customerCode": "Customer Code",
+    "customerName": "Customer Name",
+    "viewDetail": "View customer detail",
+    "editCustomer": "Edit customer",
+    "recordInformation": "Record information",
+    "deleteWarning": "Delete action requires confirmation",
+    "noResults": "No customers found",
+    "noFilterResults": "No results found with active filters"
   },
   "settings": {
     "title": "Settings",
