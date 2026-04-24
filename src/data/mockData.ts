@@ -28,6 +28,22 @@ export interface OutboundOrder {
   products: OutboundOrderProduct[];
   status: "Draft" | "In Transit" | "Delivered";
 }
+export interface OutboundOrderItem {
+  id: string;
+  orderDate: string;
+  completionDate: string;
+  customer: string;
+  orderNo: string;
+  avi: string;
+  warehouse: string;
+  sku: string;
+  productName: string;
+  lot: string;
+  quantity: number;
+  totalBoxes: number;
+  itsTransferId: string;
+  status: 'not_started' | 'picking_started' | 'picking_completed' | 'packing_started' | 'packing_completed';
+}
 
 export interface OutboundOrderProduct {
   id: string;
@@ -109,40 +125,118 @@ export const mockInboundOrders: InboundOrder[] = [
   },
 ];
 
-export const mockOutboundOrders: OutboundOrder[] = [
+export const mockOutboundOrders: OutboundOrderItem[] = [
   {
-    id: "1",
-    shipmentNo: "OUT-2026-001",
-    shipmentDate: "2026-04-01",
-    customer: "Selcuk Ecza Deposu",
-    deliveryAddress: "Istanbul, Turkey",
-    transportType: "Truck",
-    status: "Delivered",
-    products: [
-      {
-        id: "1",
-        productCode: "WGT-001",
-        productName: "Widget A",
-        quantity: 75,
-      },
-    ],
+    id: '1',
+    orderDate: '2025-12-24',
+    completionDate: '2025-12-25',
+    customer: 'Selcuk Ecza Deposu',
+    orderNo: '2006100000001',
+    avi: 'AVI2025120001',
+    warehouse: 'Depo-A',
+    sku: '1405-009',
+    productName: 'BT ENEMA 210ML',
+    lot: 'R2327045',
+    quantity: 5000,
+    totalBoxes: 250,
+    itsTransferId: 'ITS2025120001',
+    status: 'packing_completed',
   },
   {
-    id: "2",
-    shipmentNo: "OUT-2026-002",
-    shipmentDate: "2026-04-03",
-    customer: "TechCo Ltd",
-    deliveryAddress: "Ankara, Turkey",
-    transportType: "Air",
-    status: "In Transit",
-    products: [
-      {
-        id: "1",
-        productCode: "WGT-002",
-        productName: "Widget B",
-        quantity: 30,
-      },
-    ],
+    id: '2',
+    orderDate: '2025-12-23',
+    completionDate: '2025-12-24',
+    customer: 'Avixa A.Ş.',
+    orderNo: '2006100000002',
+    avi: 'AVI2025120002',
+    warehouse: 'Depo-A',
+    sku: '1405-010',
+    productName: 'PAROL 500MG TABLET',
+    lot: 'R2327046',
+    quantity: 8000,
+    totalBoxes: 400,
+    itsTransferId: 'ITS2025120002',
+    status: 'packing_started',
+  },
+  {
+    id: '3',
+    orderDate: '2025-12-22',
+    completionDate: '2025-12-23',
+    customer: 'Hedef Alliance',
+    orderNo: '2006100000003',
+    avi: 'AVI2025120003',
+    warehouse: 'Depo-B',
+    sku: '1405-011',
+    productName: 'ASPIRIN 100MG',
+    lot: 'R2327047',
+    quantity: 3000,
+    totalBoxes: 150,
+    itsTransferId: 'ITS2025120003',
+    status: 'picking_completed',
+  },
+  {
+    id: '4',
+    orderDate: '2025-12-21',
+    completionDate: '',
+    customer: 'Selcuk Ecza Deposu',
+    orderNo: '2006100000004',
+    avi: 'AVI2025120004',
+    warehouse: 'Depo-A',
+    sku: '1405-012',
+    productName: 'VOLTAREN GEL 50G',
+    lot: 'R2327048',
+    quantity: 6000,
+    totalBoxes: 300,
+    itsTransferId: 'ITS2025120004',
+    status: 'picking_started',
+  },
+  {
+    id: '5',
+    orderDate: '2025-12-20',
+    completionDate: '2025-12-21',
+    customer: 'Avixa A.Ş.',
+    orderNo: '2006100000005',
+    avi: 'AVI2025120005',
+    warehouse: 'Depo-B',
+    sku: '1405-013',
+    productName: 'CALPOL ŞURUP 150ML',
+    lot: 'R2327049',
+    quantity: 10000,
+    totalBoxes: 500,
+    itsTransferId: 'ITS2025120005',
+    status: 'packing_completed',
+  },
+  {
+    id: '6',
+    orderDate: '2025-12-19',
+    completionDate: '',
+    customer: 'Hedef Alliance',
+    orderNo: '2006100000006',
+    avi: 'AVI2025120006',
+    warehouse: 'Depo-A',
+    sku: '1405-014',
+    productName: 'MAJEZIK 500MG',
+    lot: 'R2327050',
+    quantity: 7000,
+    totalBoxes: 350,
+    itsTransferId: 'ITS2025120006',
+    status: 'not_started',
+  },
+  {
+    id: '7',
+    orderDate: '2025-12-18',
+    completionDate: '',
+    customer: 'Selcuk Ecza Deposu',
+    orderNo: '2006100000007',
+    avi: 'AVI2025120007',
+    warehouse: 'Depo-B',
+    sku: '1405-015',
+    productName: 'AUGMENTIN 1000MG',
+    lot: 'R2327051',
+    quantity: 4000,
+    totalBoxes: 200,
+    itsTransferId: 'ITS2025120007',
+    status: 'picking_started',
   },
 ];
 

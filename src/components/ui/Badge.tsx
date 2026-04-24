@@ -1,7 +1,7 @@
 
 type BadgeVariant = "plain" | "outline";
 
-type BadgeTone = "green" | "orange" | "blue" | "red" | "gray";
+export type BadgeTone = "green" | "orange" | "blue" | "red" | "gray";
 
 type BadgeProps = {
   children: React.ReactNode;
