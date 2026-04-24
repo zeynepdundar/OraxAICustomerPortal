@@ -10,10 +10,9 @@ import { Input } from '@/components/ui/Input';
 import { DataTable } from '@/components/ui/DataTable';
 import { mockOutboundOrders, OutboundOrderItem } from '@/data/mockData';
 import { Badge, BadgeTone } from '@/components/ui/Badge';
-import { SectionHeader } from '@/components/ui/SectionHeader';
 
 
-export default function OutboundOrders() {
+export default function InboundOrders() {
   const router = useRouter();
   const t = useTranslations("dashboard");
 
@@ -57,24 +56,21 @@ export default function OutboundOrders() {
 
   return (
     <div className="p-8 space-y-6">
-      <SectionHeader
-        title={t("title")}
-        description={t("reportName")}
-        actions={
-          <>
-            <Button onClick={() => { }}>
-              <Download className="w-4 h-4 mr-2" />
-              Export
-            </Button>
-            <Button onClick={() => router.push("/outbound-orders/new")}>
-              <Plus className="w-4 h-4 mr-2" />
-              {t("newOrder")}
-            </Button>
-          </>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-semibold">Outbound Orders</h1>
 
-        }
-      />
+        <div className="flex gap-3">
+          <Button onClick={()=>{}}>
+            <Download className="w-4 h-4 mr-2" />
+            Export
+          </Button>
 
+          <Button onClick={() => router.push('/outbound-orders/new')}>
+            <Plus className="w-4 h-4 mr-2" />
+            New Order
+          </Button>
+        </div>
+      </div>
 
       <Card className="p-4">
         <button
@@ -163,8 +159,8 @@ export default function OutboundOrders() {
             header: "Status",
             render: (row: OutboundOrderItem) => (
               <Badge tone={getStatusTone(row.status)} variant="outline">
-                {statusLabels[row.status]}
-              </Badge>
+              {statusLabels[row.status]}
+            </Badge>
             ),
           },
         ]}

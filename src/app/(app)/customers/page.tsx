@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { SearchInput } from "@/components/ui/SearchInput";
+import { Download, Plus } from "lucide-react";
 
 export default function CustomerPage() {
   const router = useRouter();
@@ -39,9 +40,11 @@ export default function CustomerPage() {
         description={t("description")}
         actions={
           <div className="flex items-center gap-2">
-            <Button variant="outline">{common("export")}</Button>
-            <Button onClick={() => router.push("/customers/new")}>
-              {t("newCustomer")}
+          <Button onClick={() => { }}>
+            <Download className="w-4 h-4 mr-2" />
+            Export
+          </Button>            <Button onClick={() => router.push("/customers/new")}>
+          <Plus className="w-4 h-4 mr-2" />{t("newCustomer")}
             </Button>
           </div>
         }

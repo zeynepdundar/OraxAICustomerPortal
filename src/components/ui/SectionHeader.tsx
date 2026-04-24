@@ -16,9 +16,9 @@ interface SectionHeaderProps {
       align === "center" ? "text-center" : "text-left";
   
       return (
-        <div className="flex items-start justify-between">
+        <div className="flex items-start justify-between gap-4">
           <div>
-            <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">{title}</h2>
             {description && (
               <p className="text-sm text-gray-500 mt-1">{description}</p>
             )}
