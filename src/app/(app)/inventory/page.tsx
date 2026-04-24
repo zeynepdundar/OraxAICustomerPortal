@@ -7,7 +7,7 @@ import { DataTable } from "@/components/ui/DataTable";
 import { Badge } from "@/components/ui/Badge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { useTranslations } from "next-intl";
-import { AlertTriangle, Box, Package, Search, TrendingDown, TrendingUp } from "lucide-react";
+import { AlertTriangle, Box, Download, Package, Search, TrendingDown, TrendingUp } from "lucide-react";
 import { MetricCard } from "@/components/ui/MetricCard";
 import { AskAIButton } from "@/components/ui/AskAIButton";
 import { Button } from "@/components/ui/Button";
@@ -46,6 +46,7 @@ function getInventoryStatusTone(status: InventoryItem["status"]) {
 export default function InventoryPage() {
   const router = useRouter();
   const t = useTranslations("inventory");
+  const commonT = useTranslations("common");
 
 
 
@@ -149,18 +150,25 @@ export default function InventoryPage() {
     },
   ] as const;
 
+  const exportToExcel = () => {
+    // const worksheet = XLSX.utils.json_to_sheet(mockCustomers);
+     //const workbook = XLSX.utils.book_new();
+     //XLSX.utils.book_append_sheet(workbook, worksheet, 'Outbound');
+     //XLSX.writeFile(workbook, 'outbound.xlsx');
+   };
+
   return (
     <div className="p-8 space-y-6">
       <SectionHeader
         title={t("title")}
         description={t("description")}
-        actions={
-          <>
-            <Button variant="outline">
-              Export
-            </Button>
-          </>
-        }
+        actions={[
+          {
+            label: commonT("export"),
+            variant: "secondary",
+            icon: <Download className="w-4 h-4 mr-2" />,
+            onClick: exportToExcel,
+          }]}
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -178,14 +186,14 @@ export default function InventoryPage() {
           {/* SEARCH */}
           <div>
             <label className="block text-xs font-medium text-gray-700 mb-2">
-              {t("common.search")}
+              {commonT("search")}
             </label>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
               <Input
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={t("inventory.search")}
+                placeholder={t("search")}
                 className="pl-10"
               />
             </div>
@@ -197,61 +205,61 @@ export default function InventoryPage() {
             {/* Pallet */}
             <div>
               <label className="block text-xs font-medium text-gray-700 mb-2">
-                {t("inventory.filterPalletNo")}
+                {t("filterPalletNo")}
               </label>
               <Input
                 value={""}
                 onChange={(e) => { }}
-                placeholder={t("inventory.enterPalletNo")}
+                placeholder={t("enterPalletNo")}
               />
             </div>
 
             {/* SKU */}
             <div>
               <label className="block text-xs font-medium text-gray-700 mb-2">
-                {t("inventory.filterSku")}
+                {t("filterSku")}
               </label>
               <Input
                 value={""}
                 onChange={(e) => { }}
-                placeholder={t("inventory.enterSku")}
+                placeholder={t("enterSku")}
               />
             </div>
 
             {/* Lot */}
             <div>
               <label className="block text-xs font-medium text-gray-700 mb-2">
-                {t("inventory.filterLot")}
+                {t("filterLot")}
               </label>
               <Input
                 value={"lotFilter"}
                 onChange={(e) => { }}
-                placeholder={t("inventory.enterLot")}
+                placeholder={t("enterLot")}
               />
             </div>
 
             {/* Status */}
             <div>
               <label className="block text-xs font-medium text-gray-700 mb-2">
-                {t("inventory.filterStatus")}
+                {t("filterStatus")}
               </label>
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
                 className="w-full h-10 px-3 bg-white border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                <option value="all">{t("inventory.allStatus")}</option>
-                <option value="salable">{t("inventory.salable")}</option>
-                <option value="reserved">{t("inventory.reserved")}</option>
-                <option value="quarantine">{t("inventory.quarantine")}</option>
-                <option value="damaged">{t("inventory.damaged")}</option>
+                <option value="all">{t("allStatus")}</option>
+                <option value="salable">{t("salable")}</option>
+                <option value="reserved">{t("reserved")}</option>
+                <option value="quarantine">{t("quarantine")}</option>
+                <option value="damaged">{t("damaged")}</option>
               </select>
             </div>
 
             {/* BUTTON */}
             <div className="flex items-end">
               <Button className="w-full h-10 bg-blue-600 hover:bg-blue-700 text-white">
-                {t("common.filter")}
+                {commonT("filter")}
               </Button>
             </div>
 
@@ -262,7 +270,7 @@ export default function InventoryPage() {
 
       <DataTable
         data={data}
-        emptyMessage="No results found"
+        emptyMessage={t("noResults")}
         columns={[
           {
             key: "palletNo",
@@ -271,23 +279,23 @@ export default function InventoryPage() {
                 onClick={() => handleSort("palletNo")}
                 className="cursor-pointer"
               >
-                {`Pallet${getSortIndicator("palletNo", sortField, sortDirection)}`}
+                {`${t("columns.pallet")}${getSortIndicator("palletNo", sortField, sortDirection)}`}
               </button>
             ),
             render: (row) => <span className="font-mono">{row.palletNo}</span>,
           },
           {
             key: "status",
-            header: "Status",
+            header: t("columns.status"),
             render: (row) => (
               <Badge tone={getInventoryStatusTone(row.status)} className="capitalize">
-                {row.status}
+                {t(`status.${row.status}`)}
               </Badge>
             ),
           },
           {
             key: "sku",
-            header: "Sku",
+            header: t("columns.sku"),
             render: (row) => <span className="capitalize">{row.sku}</span>,
           },
           {
@@ -297,18 +305,18 @@ export default function InventoryPage() {
                 onClick={() => handleSort("materialName")}
                 className="cursor-pointer"
               >
-                {`Material${getSortIndicator("materialName", sortField, sortDirection)}`}
+                {`${t("columns.material")}${getSortIndicator("materialName", sortField, sortDirection)}`}
               </button>
             ),
           },
           {
             key: "lot",
-            header: "Lot",
+            header: t("columns.lot"),
             render: (row) => <span >{row.lot}</span>,
           },
           {
             key: "originalQuantity",
-            header: "Original",
+            header: t("columns.original"),
             render: (row) => <span >{row.originalQuantity}</span>,
           },
           {
@@ -318,7 +326,7 @@ export default function InventoryPage() {
                 onClick={() => handleSort("currentQuantity")}
                 className="cursor-pointer"
               >
-                {`Quantity${getSortIndicator("currentQuantity", sortField, sortDirection)}`}
+                {`${t("columns.quantity")}${getSortIndicator("currentQuantity", sortField, sortDirection)}`}
               </button>
             ),
             className: "text-right",
@@ -328,18 +336,18 @@ export default function InventoryPage() {
           },
           {
             key: "actions",
-            header: <span className="w-full inline-block text-right">Actions</span>,
+            header: <span className="w-full inline-block text-right">{commonT("actions")}</span>,
             className: "text-right",
             render: () => (
               <div className="flex justify-end gap-2">
                 <button className="px-2 py-1 text-xs border rounded hover:bg-gray-100">
-                  View
+                  {commonT("view")}
                 </button>
                 <button
                   onClick={goToWareview}
                   className="px-2 py-1 text-xs border rounded hover:bg-blue-100 text-blue-600"
                 >
-                  WareView
+                  {t("wareview")}
                 </button>
               </div>
             ),

@@ -61,10 +61,11 @@ export default function MaterialsPage() {
         title={t("title")}
         description={t("reportName")}
         actions={
-          <Button onClick={() => router.push("/materials/new")}>
-            <Plus className="w-4 h-4 mr-2" />
-            {t("newMaterial")}
-          </Button>
+          [{
+            label: t("newMaterial"),
+            icon: <Plus className="w-4 h-4 mr-2" />,
+            onClick: () => router.push("/materials/new"),
+          }]
         }
       />
 

@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { SearchInput } from "@/components/ui/SearchInput";
 import { Download, Plus } from "lucide-react";
+//import * as XLSX from 'xlsx';
 
 export default function CustomerPage() {
   const router = useRouter();
@@ -33,21 +34,31 @@ export default function CustomerPage() {
     });
   }, [searchQuery]);
 
+  const exportToExcel = () => {
+   // const worksheet = XLSX.utils.json_to_sheet(mockCustomers);
+    //const workbook = XLSX.utils.book_new();
+    //XLSX.utils.book_append_sheet(workbook, worksheet, 'Outbound');
+    //XLSX.writeFile(workbook, 'outbound.xlsx');
+  };
+
   return (
     <div className="p-8 space-y-6">
       <SectionHeader
         title={t("title")}
         description={t("description")}
-        actions={
-          <div className="flex items-center gap-2">
-          <Button onClick={() => { }}>
-            <Download className="w-4 h-4 mr-2" />
-            Export
-          </Button>            <Button onClick={() => router.push("/customers/new")}>
-          <Plus className="w-4 h-4 mr-2" />{t("newCustomer")}
-            </Button>
-          </div>
-        }
+        actions={[
+          {
+            label: common("export"),
+            variant: "secondary",
+            icon: <Download className="w-4 h-4 mr-2" />,
+            onClick: exportToExcel,
+          },
+          {
+            label: t("newCustomer"),
+            icon: <Plus className="w-4 h-4 mr-2" />,
+            onClick: () => router.push("/customers/new"),
+          },
+        ]}
       />
 
       <Card className="p-5">
@@ -90,7 +101,7 @@ export default function CustomerPage() {
                   className="text-blue-600"
                   onClick={() => router.push(`/customers/${row.id}`)}
                 >
-                  WareView
+                  {t("wareview")}
                 </Button>
               </div>
             ),

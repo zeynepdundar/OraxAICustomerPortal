@@ -5,11 +5,56 @@
     "totalStock": "Toplam Stok",
     "inboundToday": "Bugünkü Giriş",
     "outboundToday": "Bugünkü Çıkış",
-    "pendingOrders": "Bekleyen Siparişler"
+    "pendingOrders": "Bekleyen Siparişler",
+    "columns": {
+      "date": "Tarih",
+      "type": "Tip",
+      "customer": "Musteri",
+      "quantity": "Miktar",
+      "status": "Durum"
+    },
+    "types": {
+      "inbound": "Giris",
+      "outbound": "Cikis"
+    },
+    "statuses": {
+      "completed": "Tamamlandi",
+      "inTransit": "Yolda"
+    }
   },
   "inventory": {
     "title": "Stok Yönetimi",
     "description": "Depo stoklarını ve parti bilgilerini görüntüleyin",
+    "search": "Malzeme adı veya lota göre ara",
+    "filterPalletNo": "Palet No",
+    "enterPalletNo": "Palet no girin",
+    "filterSku": "SKU",
+    "enterSku": "SKU girin",
+    "filterLot": "Lot",
+    "enterLot": "Lot girin",
+    "filterStatus": "Durum",
+    "allStatus": "Tum",
+    "salable": "Satilabilir",
+    "reserved": "Rezerve",
+    "quarantine": "Karantina",
+    "damaged": "Hasarli",
+    "noResults": "Sonuc bulunamadi",
+    "wareview": "WareView",
+    "columns": {
+      "pallet": "Palet",
+      "status": "Durum",
+      "sku": "SKU",
+      "material": "Malzeme",
+      "lot": "Lot",
+      "original": "Orijinal",
+      "quantity": "Miktar"
+    },
+    "status": {
+      "salable": "Satilabilir",
+      "reserved": "Rezerve",
+      "quarantine": "Karantina",
+      "damaged": "Hasarli"
+    },
     "totalStock": "Toplam Stok",
     "totalPallets": "Toplam Palet",
     "salableStock": "Kullanılabilir Stok",
@@ -17,6 +62,66 @@
     "expiringSoonStock": "Yakında Süresi Dolan Stok",
     "quarantineStock": "Karantina Stok",
     "damagedStock": "Hasarlı Stok"
+  },
+  "inboundOrders": {
+    "title": "Gelen Siparisler",
+    "description": "Gelen sevkiyatlari ve kabul durumunu takip edin",
+    "newOrder": "Yeni Gelen Siparis",
+    "filters": "Filtreler",
+    "orderNo": "Siparis No",
+    "avi": "AVI",
+    "status": {
+      "notStarted": "Baslamadi",
+      "picking": "Toplama",
+      "picked": "Toplandi",
+      "packing": "Paketleme",
+      "completed": "Tamamlandi"
+    },
+    "columns": {
+      "orderDate": "Siparis Tarihi",
+      "completionDate": "Tamamlanma Tarihi",
+      "customer": "Musteri",
+      "orderNo": "Siparis No",
+      "avi": "AVI",
+      "warehouse": "Depo",
+      "sku": "SKU",
+      "product": "Urun",
+      "lot": "Lot",
+      "quantity": "Miktar",
+      "boxes": "Koli",
+      "itsTransfer": "ITS Transfer",
+      "status": "Durum"
+    }
+  },
+  "outboundOrders": {
+    "title": "Giden Siparisler",
+    "description": "Cikis operasyonlarini ve sevkiyat durumunu takip edin",
+    "newOrder": "Yeni Giden Siparis",
+    "filters": "Filtreler",
+    "orderNo": "Siparis No",
+    "avi": "AVI",
+    "status": {
+      "notStarted": "Baslamadi",
+      "picking": "Toplama",
+      "picked": "Toplandi",
+      "packing": "Paketleme",
+      "completed": "Tamamlandi"
+    },
+    "columns": {
+      "orderDate": "Siparis Tarihi",
+      "completionDate": "Tamamlanma Tarihi",
+      "customer": "Musteri",
+      "orderNo": "Siparis No",
+      "avi": "AVI",
+      "warehouse": "Depo",
+      "sku": "SKU",
+      "product": "Urun",
+      "lot": "Lot",
+      "quantity": "Miktar",
+      "boxes": "Koli",
+      "itsTransfer": "ITS Transfer",
+      "status": "Durum"
+    }
   },
   "navigation": {
     "dashboard": "Gösterge Paneli",
@@ -57,7 +162,8 @@
     "recordInformation": "Kayıt bilgisi",
     "deleteWarning": "Silme işlemi onay gerektirir",
     "noResults": "Müşteri bulunamadı",
-    "noFilterResults": "Aktif filtrelerle sonuç bulunamadı"
+    "noFilterResults": "Aktif filtrelerle sonuç bulunamadı",
+    "wareview": "WareView"
   },
   "materials": {
     "title": "Malzemeler",

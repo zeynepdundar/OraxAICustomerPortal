@@ -29,6 +29,7 @@ function getTypeTone(type: Transaction["type"]) {
 
 export default function DashboardPage() {
   const t = useTranslations("dashboard");
+  const commonT = useTranslations("common");
 
   const kpiCards = [
     {
@@ -78,42 +79,42 @@ export default function DashboardPage() {
         columns={[
           {
             key: "date",
-            header: "Date",
+            header: t("columns.date"),
           },
           {
             key: "type",
-            header: "Type",
+            header: t("columns.type"),
             render: (row: Transaction) => (
               <Badge tone={getTypeTone(row.type)} variant="outline">
-                {row.type}
+                {row.type === "Inbound" ? t("types.inbound") : t("types.outbound")}
               </Badge>
             ),
           },
           {
             key: "customer",
-            header: "Customer",
+            header: t("columns.customer"),
           },
           {
             key: "quantity",
-            header: "Quantity",
+            header: t("columns.quantity"),
             className: "text-gray-600",
           },
           {
             key: "status",
-            header: "Status",
+            header: t("columns.status"),
             render: (row: Transaction) => (
               <Badge tone={getStatusClass(row.status)}>
-                {row.status}
+                {row.status === "Completed" ? t("statuses.completed") : t("statuses.inTransit")}
               </Badge>
             ),
           },
           {
             key: "actions",
-            header: "Actions",
+            header: commonT("actions"),
             render: () => (
               <div className="flex justify-end">
                 <button className="text-sm text-gray-600 hover:text-black">
-                  View
+                  {commonT("view")}
                 </button>
               </div>
             ),

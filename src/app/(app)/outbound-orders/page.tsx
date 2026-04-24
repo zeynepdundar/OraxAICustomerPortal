@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Filter, Download, ChevronDown, ChevronUp, X } from 'lucide-react';
+import { Plus, Download, ChevronDown, ChevronUp } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -15,7 +15,8 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 
 export default function OutboundOrders() {
   const router = useRouter();
-  const t = useTranslations("dashboard");
+  const t = useTranslations("outboundOrders");
+  const commonT = useTranslations("common");
 
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
@@ -30,11 +31,11 @@ export default function OutboundOrders() {
   const filteredData = mockOutboundOrders;
 
   const statusLabels: Record<OutboundOrderItem["status"], string> = {
-    not_started: "Not Started",
-    picking_started: "Picking",
-    picking_completed: "Picked",
-    packing_started: "Packing",
-    packing_completed: "Completed",
+    not_started: t("status.notStarted"),
+    picking_started: t("status.picking"),
+    picking_completed: t("status.picked"),
+    packing_started: t("status.packing"),
+    packing_completed: t("status.completed"),
   };
 
   const getStatusTone = (status: OutboundOrderItem["status"]): BadgeTone => {
@@ -59,20 +60,20 @@ export default function OutboundOrders() {
     <div className="p-8 space-y-6">
       <SectionHeader
         title={t("title")}
-        description={t("reportName")}
-        actions={
-          <>
-            <Button onClick={() => { }}>
-              <Download className="w-4 h-4 mr-2" />
-              Export
-            </Button>
-            <Button onClick={() => router.push("/outbound-orders/new")}>
-              <Plus className="w-4 h-4 mr-2" />
-              {t("newOrder")}
-            </Button>
-          </>
-
-        }
+        description={t("description")}
+        actions={[
+          {
+            label: commonT("export"),
+            variant: "secondary",
+            icon: <Download className="w-4 h-4 mr-2" />,
+            onClick: () => {},
+          },
+          {
+            label: t("newOrder"),
+            icon: <Plus className="w-4 h-4 mr-2" />,
+            onClick: () => router.push("/outbound-orders/new"),
+          },
+        ]}
       />
 
 
@@ -81,7 +82,7 @@ export default function OutboundOrders() {
           onClick={() => setIsFilterExpanded(!isFilterExpanded)}
           className="flex items-center justify-between w-full"
         >
-          <span>Filters</span>
+          <span>{t("filters")}</span>
           {isFilterExpanded ? <ChevronUp /> : <ChevronDown />}
         </button>
 
@@ -89,8 +90,8 @@ export default function OutboundOrders() {
           <div className="grid grid-cols-2 gap-4 mt-4">
             <Input type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} />
             <Input type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} />
-            <Input placeholder="Order No" value={orderNoFilter} onChange={(e) => setOrderNoFilter(e.target.value)} />
-            <Input placeholder="AVI" value={aviFilter} onChange={(e) => setAviFilter(e.target.value)} />
+            <Input placeholder={t("orderNo")} value={orderNoFilter} onChange={(e) => setOrderNoFilter(e.target.value)} />
+            <Input placeholder={t("avi")} value={aviFilter} onChange={(e) => setAviFilter(e.target.value)} />
           </div>
         )}
       </Card>
@@ -100,67 +101,67 @@ export default function OutboundOrders() {
         columns={[
           {
             key: "orderDate",
-            header: "Order Date",
+            header: t("columns.orderDate"),
           },
           {
             key: "completionDate",
-            header: "Completion Date",
+            header: t("columns.completionDate"),
             render: (row: OutboundOrderItem) => row.completionDate || "-",
           },
           {
             key: "customer",
-            header: "Customer",
+            header: t("columns.customer"),
           },
           {
             key: "orderNo",
-            header: "Order No",
+            header: t("columns.orderNo"),
             className: "font-mono",
           },
           {
             key: "avi",
-            header: "AVI",
+            header: t("columns.avi"),
             className: "font-mono text-gray-600",
           },
           {
             key: "warehouse",
-            header: "Warehouse",
+            header: t("columns.warehouse"),
           },
           {
             key: "sku",
-            header: "SKU",
+            header: t("columns.sku"),
             className: "font-mono text-gray-600",
           },
           {
             key: "productName",
-            header: "Product",
+            header: t("columns.product"),
           },
           {
             key: "lot",
-            header: "Lot",
+            header: t("columns.lot"),
             className: "font-mono text-gray-600",
           },
           {
             key: "quantity",
-            header: "Quantity",
+            header: t("columns.quantity"),
             className: "text-right text-gray-600",
             render: (row: OutboundOrderItem) =>
               row.quantity.toLocaleString(),
           },
           {
             key: "totalBoxes",
-            header: "Boxes",
+            header: t("columns.boxes"),
             className: "text-right font-semibold",
             render: (row: OutboundOrderItem) =>
               row.totalBoxes.toLocaleString(),
           },
           {
             key: "itsTransferId",
-            header: "ITS Transfer",
+            header: t("columns.itsTransfer"),
             className: "font-mono text-gray-600",
           },
           {
             key: "status",
-            header: "Status",
+            header: t("columns.status"),
             render: (row: OutboundOrderItem) => (
               <Badge tone={getStatusTone(row.status)} variant="outline">
                 {statusLabels[row.status]}
