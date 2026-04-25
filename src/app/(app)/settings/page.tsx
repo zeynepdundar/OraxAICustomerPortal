@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
+import { SelectBox } from "@/components/ui/SelectBox";
 import { Button } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
@@ -166,23 +167,21 @@ export default function SettingsPage() {
                   placeholder={t("emailPlaceholder")}
                 />
               </div>
-              <div className="space-y-1.5">
-                <label className="text-sm font-medium text-gray-700">{t("role")}</label>
-                <select
-                  value={newUser.role}
-                  onChange={(e) =>
-                    setNewUser((prev) => ({
-                      ...prev,
-                      role: e.target.value as UserRole,
-                    }))
-                  }
-                  className="w-full h-9 rounded-md border border-gray-300 px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-                >
-                  <option value="admin">{t("roleAdmin")}</option>
-                  <option value="manager">{t("roleManager")}</option>
-                  <option value="viewer">{t("roleViewer")}</option>
-                </select>
-              </div>
+              <SelectBox
+                label={t("role")}
+                className="w-full"
+                value={newUser.role}
+                onChange={(e) =>
+                  setNewUser((prev) => ({
+                    ...prev,
+                    role: e.target.value as UserRole,
+                  }))
+                }
+              >
+                <option value="admin">{t("roleAdmin")}</option>
+                <option value="manager">{t("roleManager")}</option>
+                <option value="viewer">{t("roleViewer")}</option>
+              </SelectBox>
               <div className="flex items-center gap-2">
                 <Button onClick={handleAddUser} size="sm">
                   {t("add")}
@@ -285,23 +284,20 @@ export default function SettingsPage() {
               <label className="text-sm font-medium text-gray-700">{t("language")}</label>
               <div className="relative">
                 <Globe className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-                <select className="w-full h-9 rounded-md border border-gray-300 pl-9 pr-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+                <SelectBox className="pl-9 pr-3">
                   <option value="tr">{t("languageTr")}</option>
                   <option value="en">{t("languageEn")}</option>
                   <option value="de">{t("languageDe")}</option>
                   <option value="ru">{t("languageRu")}</option>
                   <option value="ar">{t("languageAr")}</option>
                   <option value="es">{t("languageEs")}</option>
-                </select>
+                </SelectBox>
               </div>
             </div>
-            <div className="space-y-1.5">
-              <label className="text-sm font-medium text-gray-700">{t("timezone")}</label>
-              <select className="w-full h-9 rounded-md border border-gray-300 px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
-                <option value="istanbul">{t("timezoneIstanbul")}</option>
-                <option value="utc">{t("timezoneUTC")}</option>
-              </select>
-            </div>
+            <SelectBox label={t("timezone")} className="px-3">
+              <option value="istanbul">{t("timezoneIstanbul")}</option>
+              <option value="utc">{t("timezoneUTC")}</option>
+            </SelectBox>
           </div>
         </Card>
 

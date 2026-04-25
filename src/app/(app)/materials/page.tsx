@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Input } from "@/components/ui/Input";
+import { SelectBox } from "@/components/ui/SelectBox";
 import { DataTable } from "@/components/ui/DataTable";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
@@ -84,18 +85,16 @@ export default function MaterialsPage() {
           </div>
 
           <div className="w-64">
-            <label className="block text-xs font-medium text-gray-600 mb-2">
-              {t("filterStatus")}
-            </label>
-            <select
+            <SelectBox
+              label={t("filterStatus")}
               value={itsTrackingFilter}
               onChange={(event) => setItsTrackingFilter(event.target.value)}
-              className="w-full h-9 px-3 bg-gray-50 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="bg-gray-50 border-gray-200"
             >
               <option value="all">{t("filterStatusAll")}</option>
               <option value="yes">{t("filterItsTrackingYes")}</option>
               <option value="no">{t("filterItsTrackingNo")}</option>
-            </select>
+            </SelectBox>
           </div>
 
           <Button variant="outline" size="sm" className="border-gray-200">

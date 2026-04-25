@@ -13,6 +13,7 @@ import { AskAIButton } from "@/components/ui/AskAIButton";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
+import { SelectBox } from "@/components/ui/SelectBox";
 
 
 type SortField =
@@ -240,20 +241,18 @@ export default function InventoryPage() {
 
             {/* Status */}
             <div>
-              <label className="block text-xs font-medium text-gray-700 mb-2">
-                {t("filterStatus")}
-              </label>
-              <select
+              <SelectBox
+                label={t("filterStatus")}
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="w-full h-10 px-3 bg-white border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="h-10 rounded-lg"
               >
                 <option value="all">{t("allStatus")}</option>
                 <option value="salable">{t("salable")}</option>
                 <option value="reserved">{t("reserved")}</option>
                 <option value="quarantine">{t("quarantine")}</option>
                 <option value="damaged">{t("damaged")}</option>
-              </select>
+              </SelectBox>
             </div>
 
             {/* BUTTON */}

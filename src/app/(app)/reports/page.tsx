@@ -18,8 +18,10 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
+import { SelectBox } from "@/components/ui/SelectBox";
 import { mockChartData, mockMaterials } from "@/data/mockData";
 import { SummaryCardItem } from "@/components/ui/SummaryCardItem";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 ChartJS.register(
   CategoryScale,
@@ -215,20 +217,17 @@ export default function ReportsPage() {
   return (
     <div className="p-8 space-y-6">
       <div className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold text-gray-900">{t("title")}</h1>
-          <p className="text-sm text-gray-500 mt-1">{t("subtitle")}</p>
-        </div>
+        <SectionHeader title={t("title")} description={t("subtitle")} />
         <div className="w-40">
-          <label className="block text-xs text-gray-600 mb-1">{t("language")}</label>
-          <select
+          <SelectBox
+            label={t("language")}
             value={locale}
             onChange={(event) => setLocale(event.target.value as SupportedLocale)}
-            className="w-full h-9 px-3 bg-white border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border-gray-200"
           >
             <option value="en">{t("english")}</option>
             <option value="tr">{t("turkish")}</option>
-          </select>
+          </SelectBox>
         </div>
       </div>
 
@@ -306,11 +305,11 @@ export default function ReportsPage() {
             <Input type="date" className="mt-1.5" value={dateTo} onChange={(e) => setDateTo(e.target.value)} />
           </div>
           <div>
-            <label className="text-xs text-gray-600">{t("product")}</label>
-            <select
+            <SelectBox
+              label={t("product")}
               value={product}
               onChange={(e) => setProduct(e.target.value)}
-              className="mt-1.5 w-full h-9 px-3 bg-white border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="mt-1.5"
             >
               <option value="all">{t("allProducts")}</option>
               {mockMaterials.map((m) => (
@@ -318,19 +317,19 @@ export default function ReportsPage() {
                   {m.productName}
                 </option>
               ))}
-            </select>
+            </SelectBox>
           </div>
           <div>
-            <label className="text-xs text-gray-600">{t("orderType")}</label>
-            <select
+            <SelectBox
+              label={t("orderType")}
               value={orderType}
               onChange={(e) => setOrderType(e.target.value)}
-              className="mt-1.5 w-full h-9 px-3 bg-white border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="mt-1.5"
             >
               <option value="all">{t("allTypes")}</option>
               <option value="inbound">{t("inbound")}</option>
               <option value="outbound">{t("outbound")}</option>
-            </select>
+            </SelectBox>
           </div>
         </div>
 
