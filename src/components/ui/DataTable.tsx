@@ -21,15 +21,15 @@ export function DataTable<T>({
   emptyMessage = "No data available",
 }: DataTableProps<T>) {
   return (
-    <div className="overflow-x-auto bg-white border border-gray-200 rounded-xl">
+    <div className="overflow-x-auto bg-white shadow-sm border border-gray-100 rounded-xl">
       <table className="w-full">
         {/* HEADER */}
-        <thead className="border-b border-gray-200 bg-gray-50">
+        <thead className="border-b border-gray-100 bg-gray-50/60">
           <tr>
             {columns.map((col) => (
               <th
                 key={String(col.key)}
-                className={`px-5 py-3 text-left text-xs font-medium text-gray-600 ${col.className || ""}`}
+                className={`px-5 py-3.5 text-left text-xs font-medium text-gray-500 uppercase tracking-wide ${col.className || ""}`}
               >
                 {col.header}
               </th>
@@ -38,17 +38,17 @@ export function DataTable<T>({
         </thead>
 
         {/* BODY */}
-        <tbody className="divide-y divide-gray-100">
+        <tbody className="divide-y divide-gray-50">
           {data.length > 0 ? (
             data.map((row, rowIndex) => (
               <tr
                 key={rowIndex}
-                className="hover:bg-gray-50 transition-colors"
+                className="hover:bg-gray-50/70 transition-colors"
               >
                 {columns.map((col) => (
                   <td
                     key={String(col.key)}
-                    className={`px-5 py-4 text-sm text-gray-900 ${col.className || ""}`}
+                    className={`px-5 py-4 text-sm text-gray-700 ${col.className || ""}`}
                   >
                     {col.render
                       ? col.render(row)

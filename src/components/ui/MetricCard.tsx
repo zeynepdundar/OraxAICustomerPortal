@@ -45,7 +45,7 @@ export function MetricCard({
   const styles = variantStyles[variant];
 
   return (
-    <div className="p-5 bg-white border border-gray-200 rounded-xl">
+    <div className="p-5 bg-white shadow-sm border border-gray-100 rounded-xl">
       {/* TOP */}
       <div className="flex items-start justify-between">
         {/* Left */}

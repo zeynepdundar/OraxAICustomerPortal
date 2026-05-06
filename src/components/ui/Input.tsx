@@ -18,9 +18,9 @@ function Input({
   const inputId = id || React.useId();
 
   const baseClasses =
-    "w-full h-9 px-3 py-1 text-sm rounded-md border outline-none transition " +
-    "bg-white border-gray-300 placeholder:text-gray-400 " +
-    "focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-blue-500 " +
+    "w-full h-9 px-3 py-1 text-sm rounded-lg border outline-none transition " +
+    "bg-white border-gray-200 placeholder:text-gray-400 " +
+    "focus-visible:ring-2 focus-visible:ring-blue-500/20 focus-visible:border-blue-500 " +
     "disabled:opacity-50 disabled:cursor-not-allowed";
 
   const errorClasses = error

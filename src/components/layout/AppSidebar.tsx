@@ -24,9 +24,9 @@ export default function AppSidebar({
   };
 
   return (
-    <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
+    <div className="w-64 bg-white flex flex-col shadow-[1px_0_0_0_#f0f2f5]">
       {/* Logo */}
-      <div className="h-16 flex items-center px-6 border-b">
+      <div className="h-16 flex items-center px-6 border-b border-gray-100">
         <img
           src="/branding/logo/logo.svg"
           alt="OraxAI"
@@ -35,15 +35,15 @@ export default function AppSidebar({
       </div>
 
       {/* Menu */}
-      <nav className="flex-1 p-4 space-y-1">
+      <nav className="flex-1 p-3 space-y-0.5">
         {menuItems.map((item) => (
           <button
             key={item.path}
             onClick={() => router.push(item.path)}
-            className={`w-full text-left px-4 py-3 rounded-lg text-sm ${
+            className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-all ${
               isActive(item.path)
-                ? "bg-blue-50 text-blue-600 font-medium"
-                : "text-gray-600 hover:bg-gray-50"
+                ? "bg-blue-50 text-blue-700 font-medium"
+                : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
             }`}
           >
             {item.label}
@@ -52,10 +52,10 @@ export default function AppSidebar({
       </nav>
 
       {/* Logout */}
-      <div className="p-4 border-t">
+      <div className="p-3 border-t border-gray-100">
         <button
           onClick={handleLogout}
-          className="w-full text-left px-4 py-3 text-sm text-gray-600 hover:bg-gray-50 rounded-lg"
+          className="w-full text-left px-4 py-2.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-900 rounded-lg transition-all"
         >
           {t("logout")}
         </button>

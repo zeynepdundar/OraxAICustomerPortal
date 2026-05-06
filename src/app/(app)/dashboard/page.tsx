@@ -113,7 +113,7 @@ export default function DashboardPage() {
             header: commonT("actions"),
             render: () => (
               <div className="flex justify-end">
-                <button className="text-sm text-gray-600 hover:text-black">
+                <button className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
                   {commonT("view")}
                 </button>
               </div>

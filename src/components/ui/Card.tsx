@@ -8,7 +8,7 @@ function Card({
   return (
     <div
       className={
-        "bg-white border border-gray-200 rounded-xl " +
+        "bg-white shadow-sm border border-gray-100 rounded-xl " +
         className
       }
       {...props}

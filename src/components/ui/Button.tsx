@@ -15,17 +15,17 @@ function Button({
 }: ButtonProps) {
   // base
   let classes =
-    "inline-flex items-center justify-center rounded-md font-medium transition focus:outline-none disabled:opacity-50 disabled:pointer-events-none";
+    "inline-flex items-center justify-center rounded-lg font-medium transition focus:outline-none disabled:opacity-50 disabled:pointer-events-none";
 
   // variants
   if (variant === "primary") {
-    classes += " bg-blue-600 text-white hover:bg-blue-700";
+    classes += " bg-blue-600 text-white hover:bg-blue-700 shadow-sm";
   } else if (variant === "secondary") {
-    classes += " bg-gray-100 text-gray-900 hover:bg-gray-200";
+    classes += " bg-gray-100 text-gray-700 hover:bg-gray-200";
   } else if (variant === "outline") {
-    classes += " border border-gray-300 text-gray-700 hover:bg-gray-50";
+    classes += " border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300";
   } else if (variant === "ghost") {
-    classes += " text-gray-700 hover:bg-gray-100";
+    classes += " text-gray-600 hover:bg-gray-100";
   }
 
   // sizes
