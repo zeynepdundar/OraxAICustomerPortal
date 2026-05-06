@@ -2,12 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/Button";
+import Image from "next/image";
 
 export default function LoginPage() {
   const router = useRouter();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,80 +16,126 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        {/* Card */}
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          {/* Logo & Title */}
-          <div className="text-center mb-8">
-            <div className="flex justify-center mb-4">
-              <img
-                src="/branding/logo/logo.svg"
-                alt="OraxAI Logo"
-                className="h-16"
-              />
-            </div>
+    <div className="min-h-screen flex">
+      {/* Left — image panel */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+        <Image
+          src="/depo-koridor.jpg"
+          alt="Warehouse corridor"
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/20" />
 
-            <h1 className="text-3xl font-bold text-blue-900 mb-2">
-              Sign in
-            </h1>
-            <h2 className="text-xl text-gray-700 mb-1">
-              Customer Portal
+        {/* Brand overlay */}
+        <div className="relative z-10 flex flex-col justify-between p-12 w-full">
+          <div>
+            <img
+              src="/branding/logo/logo.svg"
+              alt="OraxAI"
+              className="h-10 brightness-0 invert"
+            />
+          </div>
+          <div>
+            <p className="text-white/60 text-sm uppercase tracking-widest font-medium mb-3">
+              Warehouse Intelligence
+            </p>
+            <h2 className="text-white text-4xl font-light leading-snug">
+              Smart logistics,<br />
+              <span className="font-semibold">effortless control.</span>
             </h2>
-            <p className="text-sm text-gray-500">
-              Access your warehouse dashboard
+          </div>
+        </div>
+      </div>
+
+      {/* Right — form panel */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center bg-white px-8 py-12">
+        <div className="w-full max-w-sm">
+          {/* Mobile logo */}
+          <div className="flex justify-center mb-10 lg:hidden">
+            <img
+              src="/branding/logo/logo.svg"
+              alt="OraxAI"
+              className="h-10"
+            />
+          </div>
+
+          {/* Heading */}
+          <div className="mb-10">
+            <h1 className="text-3xl font-semibold text-gray-900 mb-2">
+              Welcome back
+            </h1>
+            <p className="text-gray-500 text-sm">
+              Sign in to your customer portal
             </p>
           </div>
 
-          {/* Demo Notice */}
-          <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <p className="text-sm text-blue-800 font-medium mb-1">
-              Demo Access
-            </p>
-            <p className="text-sm text-blue-700">
-              Use any email and password to continue
+          {/* Demo badge */}
+          <div className="mb-8 px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+            <p className="text-xs text-gray-500">
+              Demo mode — use any email and password
             </p>
           </div>
 
           {/* Form */}
           <form onSubmit={handleLogin} className="space-y-5">
-            <Input
-              label="Email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-            />
+            <div className="space-y-1.5">
+              <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Email
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@company.com"
+                className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#458bc9] focus:ring-1 focus:ring-[#458bc9] transition"
+              />
+            </div>
 
-            <Input
-              label="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              required
-            />
+            <div className="space-y-1.5">
+              <label className="block text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Password
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+                className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#458bc9] focus:ring-1 focus:ring-[#458bc9] transition"
+              />
+            </div>
 
-            {/* Forgot */}
-            <div className="text-right">
+            <div className="flex justify-end">
               <button
                 type="button"
-                className="text-sm text-blue-600 hover:text-blue-700"
+                className="text-xs text-gray-400 transition"
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#458bc9")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
               >
                 Forgot password?
               </button>
             </div>
 
-            <Button type="submit" className="w-full h-11">
+            <button
+              type="submit"
+              className="w-full text-white font-medium text-sm rounded-lg h-11 transition-colors"
+              style={{ backgroundColor: "#458bc9" }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#3a7ab5")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#458bc9")}
+            >
               Sign in
-            </Button>
+            </button>
           </form>
-        </div>
 
-        {/* Footer */}
-        <p className="text-center text-sm text-gray-600 mt-6">
-          © {new Date().getFullYear()} OraxAI. Tüm hakları saklıdır.
-        </p>
+          {/* Footer */}
+          <p className="text-center text-xs text-gray-400 mt-10">
+            © {new Date().getFullYear()} OraxAI. All rights reserved.
+          </p>
+        </div>
       </div>
     </div>
   );
