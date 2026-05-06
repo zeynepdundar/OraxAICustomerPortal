@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import AppHeader from "@/components/layout/AppHeader";
 import AppSidebar from "@/components/layout/AppSidebar";
@@ -10,9 +11,16 @@ export default function AppLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   const t = useTranslations("navigation");
 
   const [, setIsCommandBarOpen] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("isLoggedIn") !== "true") {
+      router.replace("/login");
+    }
+  }, [router]);
 
   const menuItems = [
     { path: "/dashboard", label: t("dashboard") },

@@ -11,8 +11,9 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    sessionStorage.setItem("isLoggedIn", "true");
     router.push("/dashboard");
   };
 
