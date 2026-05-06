@@ -244,7 +244,7 @@ export default function InventoryPage() {
               <SelectBox
                 label={t("filterStatus")}
                 value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
+                onChange={setStatusFilter}
                 className="h-10 rounded-lg"
               >
                 <option value="all">{t("allStatus")}</option>

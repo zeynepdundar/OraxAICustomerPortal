@@ -88,7 +88,7 @@ export default function MaterialsPage() {
             <SelectBox
               label={t("filterStatus")}
               value={itsTrackingFilter}
-              onChange={(event) => setItsTrackingFilter(event.target.value)}
+              onChange={setItsTrackingFilter}
               className="bg-gray-50 border-gray-200"
             >
               <option value="all">{t("filterStatusAll")}</option>

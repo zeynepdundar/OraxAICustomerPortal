@@ -171,10 +171,10 @@ export default function SettingsPage() {
                 label={t("role")}
                 className="w-full"
                 value={newUser.role}
-                onChange={(e) =>
+                onChange={(value) =>
                   setNewUser((prev) => ({
                     ...prev,
-                    role: e.target.value as UserRole,
+                    role: value as UserRole,
                   }))
                 }
               >

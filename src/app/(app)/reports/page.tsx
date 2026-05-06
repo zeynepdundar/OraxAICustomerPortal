@@ -81,6 +81,22 @@ export default function ReportsPage() {
   const [dateTo, setDateTo] = useState("");
   const [product, setProduct] = useState("all");
   const [orderType, setOrderType] = useState("all");
+  const localeOptions = [
+    { value: "en", label: t("english") },
+    { value: "tr", label: t("turkish") },
+  ];
+  const productOptions = [
+    { value: "all", label: t("allProducts") },
+    ...mockMaterials.map((material) => ({
+      value: material.productCode,
+      label: material.productName,
+    })),
+  ];
+  const orderTypeOptions = [
+    { value: "all", label: t("allTypes") },
+    { value: "inbound", label: t("inbound") },
+    { value: "outbound", label: t("outbound") },
+  ];
 
   const summaryData = [
     { label: t("totalOrders"), value: 156 },
@@ -222,12 +238,10 @@ export default function ReportsPage() {
           <SelectBox
             label={t("language")}
             value={locale}
-            onChange={(event) => setLocale(event.target.value as SupportedLocale)}
+            onChange={(value) => setLocale(value as SupportedLocale)}
+            options={localeOptions}
             className="border-gray-200"
-          >
-            <option value="en">{t("english")}</option>
-            <option value="tr">{t("turkish")}</option>
-          </SelectBox>
+          />
         </div>
       </div>
 
@@ -308,28 +322,19 @@ export default function ReportsPage() {
             <SelectBox
               label={t("product")}
               value={product}
-              onChange={(e) => setProduct(e.target.value)}
+              onChange={setProduct}
+              options={productOptions}
               className="mt-1.5"
-            >
-              <option value="all">{t("allProducts")}</option>
-              {mockMaterials.map((m) => (
-                <option key={m.id} value={m.productCode}>
-                  {m.productName}
-                </option>
-              ))}
-            </SelectBox>
+            />
           </div>
           <div>
             <SelectBox
               label={t("orderType")}
               value={orderType}
-              onChange={(e) => setOrderType(e.target.value)}
+              onChange={setOrderType}
+              options={orderTypeOptions}
               className="mt-1.5"
-            >
-              <option value="all">{t("allTypes")}</option>
-              <option value="inbound">{t("inbound")}</option>
-              <option value="outbound">{t("outbound")}</option>
-            </SelectBox>
+            />
           </div>
         </div>
 

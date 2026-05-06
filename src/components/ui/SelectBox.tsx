@@ -1,15 +1,25 @@
 import * as React from "react";
 
-interface SelectBoxProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+type SelectOption = {
+  value: string;
+  label: React.ReactNode;
+};
+
+interface SelectBoxProps
+  extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "onChange"> {
   label?: string;
   error?: string;
   hint?: string;
+  options?: SelectOption[];
+  onChange?: (value: string) => void;
 }
 
 function SelectBox({
   label,
   error,
   hint,
+  options,
+  onChange,
   id,
   className = "",
   children,
@@ -39,9 +49,16 @@ function SelectBox({
         id={selectId}
         aria-invalid={!!error}
         className={baseClasses + errorClasses + " " + className}
+        onChange={(event) => onChange?.(event.target.value)}
         {...props}
       >
-        {children}
+        {options
+          ? options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))
+          : children}
       </select>
 
       {hint && !error ? <p className="text-xs text-gray-500">{hint}</p> : null}
