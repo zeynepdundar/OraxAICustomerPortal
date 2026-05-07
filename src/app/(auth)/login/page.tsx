@@ -9,7 +9,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = (e: React.SyntheticEvent) => {
     e.preventDefault();
     sessionStorage.setItem("isLoggedIn", "true");
     router.push("/dashboard");
@@ -17,7 +17,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left — image panel */}
+      {/* ── Left — image panel ── */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
         <Image
           src="/depo-koridor.jpg"
@@ -26,20 +26,17 @@ export default function LoginPage() {
           className="object-cover"
           priority
         />
-        {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/20" />
 
-        {/* Brand overlay */}
-        <div className="relative z-10 flex flex-col justify-between p-12 w-full">
+        {/* Lighter, brand-tinted overlay — image breathes more at top */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-brand-900/30 to-brand-900/60" />
+
+        {/* Right-edge fade — transitions into form panel */}
+        <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-r from-transparent to-brand-950/25" />
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col justify-end p-12 w-full">
           <div>
-            <img
-              src="/branding/logo/logo.svg"
-              alt="OraxAI"
-              className="h-10 brightness-0 invert"
-            />
-          </div>
-          <div>
-            <p className="text-white/60 text-sm uppercase tracking-widest font-medium mb-3">
+            <p className="text-white/50 text-xs uppercase tracking-widest font-medium mb-3">
               Warehouse Intelligence
             </p>
             <h2 className="text-white text-4xl font-light leading-snug">
@@ -50,32 +47,29 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Right — form panel */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center bg-white px-8 py-12">
+      {/* ── Right — form panel ── */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center bg-gradient-to-br from-brand-50/50 via-slate-50 to-white px-8 py-12">
         <div className="w-full max-w-sm">
-          {/* Mobile logo */}
-          <div className="flex justify-center mb-10 lg:hidden">
-            <img
-              src="/branding/logo/logo.svg"
-              alt="OraxAI"
-              className="h-10"
-            />
+
+          {/* Logo */}
+          <div className="mb-10">
+            <img src="/branding/logo/logo.svg" alt="OraxAI" className="h-9" />
           </div>
 
           {/* Heading */}
           <div className="mb-10">
             <h1 className="text-3xl font-semibold text-gray-900 mb-2">
-              Welcome back
+              Customer Portal
             </h1>
             <p className="text-gray-500 text-sm">
-              Sign in to your customer portal
+              Sign in to access your account
             </p>
           </div>
 
           {/* Demo badge */}
-          <div className="mb-8 px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-            <p className="text-xs text-gray-500">
+          <div className="mb-8 px-4 py-3 rounded-lg border border-brand-100 bg-brand-50/60 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-success-500 shrink-0" />
+            <p className="text-xs text-brand-700">
               Demo mode — use any email and password
             </p>
           </div>
@@ -91,7 +85,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
-                className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#458bc9] focus:ring-1 focus:ring-[#458bc9] transition"
+                className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all"
               />
             </div>
 
@@ -105,16 +99,14 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#458bc9] focus:ring-1 focus:ring-[#458bc9] transition"
+                className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all"
               />
             </div>
 
             <div className="flex justify-end">
               <button
                 type="button"
-                className="text-xs text-gray-400 transition"
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#458bc9")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+                className="text-xs text-gray-400 hover:text-brand-500 transition-colors"
               >
                 Forgot password?
               </button>
@@ -122,10 +114,7 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              className="w-full text-white font-medium text-sm rounded-lg h-11 transition-colors"
-              style={{ backgroundColor: "#458bc9" }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#3a7ab5")}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#458bc9")}
+              className="w-full bg-brand-500 hover:bg-brand-600 active:bg-brand-700 text-white font-medium text-sm rounded-lg h-11 transition-colors shadow-sm"
             >
               Sign in
             </button>

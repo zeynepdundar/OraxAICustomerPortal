@@ -42,7 +42,7 @@ export default function AppSidebar({
             onClick={() => router.push(item.path)}
             className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-all ${
               isActive(item.path)
-                ? "bg-blue-50 text-blue-700 font-medium"
+                ? "bg-brand-50 text-brand-700 font-medium"
                 : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
             }`}
           >
