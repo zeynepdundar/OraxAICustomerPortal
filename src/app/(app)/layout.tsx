@@ -27,6 +27,7 @@ export default function AppLayout({
   const t = useTranslations("navigation");
 
   const [, setIsCommandBarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
     if (sessionStorage.getItem("isLoggedIn") !== "true") {
@@ -60,7 +61,7 @@ const menuItems = [
 
   return (
     <div className="flex h-screen bg-gray-50">
-      <AppSidebar menuItems={menuItems} />
+      <AppSidebar menuItems={menuItems} isOpen={sidebarOpen} onToggle={() => setSidebarOpen((v) => !v)} />
 
       <div className="flex-1 flex flex-col overflow-hidden">
         <AppHeader onOpenCommandBar={() => setIsCommandBarOpen(true)} />
