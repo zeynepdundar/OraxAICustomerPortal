@@ -60,7 +60,7 @@ const menuItems = [
   }, []);
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen">
       <AppSidebar menuItems={menuItems} isOpen={sidebarOpen} onToggle={() => setSidebarOpen((v) => !v)} />
 
       <div className="flex-1 flex flex-col overflow-hidden">

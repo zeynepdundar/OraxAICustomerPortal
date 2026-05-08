@@ -23,8 +23,9 @@ function Button({
   } else if (variant === "success") {
     classes += " bg-success-600 text-white hover:bg-success-700 shadow-sm";
   } else if (variant === "outline") {
-    classes += " border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300";
-  } else if (variant === "ghost") {
+    classes += " bg-white border border-gray-200 text-gray-900 hover:bg-gray-50 hover:border-gray-300 shadow-sm";
+  }
+  else if (variant === "ghost") {
     classes += " text-gray-600 hover:bg-gray-100";
   }
 

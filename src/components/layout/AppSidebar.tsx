@@ -33,12 +33,12 @@ export default function AppSidebar({
           <img
             src="/branding/logo/logo.svg"
             alt="OraxAI"
-            className="h-7"
+            className="h-6"
           />
         )}
         <button
           onClick={onToggle}
-          className={`${isOpen ? "" : "mx-auto"} w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-700 transition-colors`}
+          className={`${isOpen ? "" : "mx-auto"} w-8 h-8 flex items-center justify-center rounded-lg text-gray-900 hover:bg-gray-100 hover:text-gray-700 transition-colors`}
         >
           {isOpen ? (
             <PanelLeftIcon className="w-4 h-4" />
@@ -48,7 +48,7 @@ export default function AppSidebar({
       </div>
 
       {/* Menu */}
-      <nav className="flex-1 p-3 space-y-0.5">
+      <nav className="flex-1 p-3 space-y-0.5 text-gray-900">
         {menuItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.path);
@@ -61,7 +61,7 @@ export default function AppSidebar({
               className={`w-full flex items-center gap-3 px-2.5 py-2.5 rounded-lg text-sm transition-all ${isOpen ? "justify-start" : "justify-center"
                 } ${active
                   ? "bg-brand-50 text-brand-700 font-medium"
-                  : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                  : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 }`}
             >
               <Icon className="w-4 h-4 shrink-0" />

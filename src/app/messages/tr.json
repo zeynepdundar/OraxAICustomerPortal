@@ -135,7 +135,7 @@
     "settings": "Ayarlar"
   },
   "header": {
-    "searchCommand": "Ara (⌘K)"
+    "searchCommand": "Sipariş, envanter, gönderi ara… (⌘K)"
   },
   "common": {
     "logout": "Çıkış Yap",

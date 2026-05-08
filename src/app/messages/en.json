@@ -135,7 +135,7 @@
     "settings": "Settings"
   },
   "header": {
-    "searchCommand": "Search (⌘K)"
+    "searchCommand": "Search orders, inventory, shipments… (⌘K)"
   },
   "common": {
     "logout": "Logout",
