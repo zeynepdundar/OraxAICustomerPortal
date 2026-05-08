@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Download, Mic, Send } from "lucide-react";
+import { ArrowDownToLine, ArrowUpFromLine, Boxes, Download, Mic, Send, ShoppingBag, ShoppingBagIcon } from "lucide-react";
 import { Line, Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -99,11 +99,35 @@ export default function ReportsPage() {
   ];
 
   const summaryData = [
-    { label: t("totalOrders"), value: 156 },
-    { label: t("inboundOrders"), value: 89, color: "text-green-600" },
-    { label: t("outboundOrders"), value: 67, color: "text-orange-600" },
-    { label: t("totalItems"), value: "2,450", color: "text-blue-600" },
-  ];
+  {
+    label: t("totalOrders"),
+    value: 156,
+    icon: ShoppingBag,
+    iconBgColor: "bg-blue-50",
+    iconColor: "text-blue-600",
+  },
+  {
+    label: t("inboundOrders"),
+    value: 89,
+    icon: ArrowDownToLine,
+    iconBgColor: "bg-green-50",
+    iconColor: "text-green-600",
+  },
+  {
+    label: t("outboundOrders"),
+    value: 67,
+    icon: ArrowUpFromLine,
+    iconBgColor: "bg-orange-50",
+    iconColor: "text-orange-600",
+  },
+  {
+    label: t("totalItems"),
+    value: "2,450",
+    icon: Boxes,
+    iconBgColor: "bg-purple-50",
+    iconColor: "text-purple-600",
+  },
+];
 
   const lineData = useMemo(
     () => ({
@@ -374,7 +398,9 @@ export default function ReportsPage() {
               key={i}
               label={item.label}
               value={item.value}
-              valueColor={item.color}
+              icon ={item.icon}
+              iconColor={item.iconColor}
+              iconBgColor={item.iconBgColor}
             />
           ))}
         </div>

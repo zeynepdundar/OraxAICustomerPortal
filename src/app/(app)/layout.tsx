@@ -43,7 +43,7 @@ const menuItems = [
   { path: "/reports", label: t("reports"), icon: BarChart3 },
   { path: "/materials", label: t("materials"), icon: Package },
   { path: "/customers", label: t("customers"), icon: Users },
-  { path: "/settings", label: t("settings"), icon: Settings },
+  //{ path: "/settings", label: t("settings"), icon: Settings },
 ];
 
   useEffect(() => {
