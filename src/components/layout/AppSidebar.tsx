@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 type MenuItem = {
   path: string;
   label: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 };
 
 export default function AppSidebar({
@@ -36,19 +37,23 @@ export default function AppSidebar({
 
       {/* Menu */}
       <nav className="flex-1 p-3 space-y-0.5">
-        {menuItems.map((item) => (
-          <button
-            key={item.path}
-            onClick={() => router.push(item.path)}
-            className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-all ${
-              isActive(item.path)
-                ? "bg-brand-50 text-brand-700 font-medium"
-                : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-            }`}
-          >
-            {item.label}
-          </button>
-        ))}
+        {menuItems.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <button
+              key={item.path}
+              onClick={() => router.push(item.path)}
+              className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all ${isActive(item.path)
+                  ? "bg-brand-50 text-brand-700 font-medium"
+                  : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                }`}
+            >
+              <Icon className="w-4 h-4" />
+              {item.label}
+            </button>
+          );
+        })}
       </nav>
 
       {/* Logout */}

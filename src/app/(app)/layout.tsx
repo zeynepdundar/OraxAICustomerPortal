@@ -6,6 +6,18 @@ import { useTranslations } from "next-intl";
 import AppHeader from "@/components/layout/AppHeader";
 import AppSidebar from "@/components/layout/AppSidebar";
 
+import {
+  LayoutDashboard,
+  Boxes,
+  Eye,
+  ArrowDownToLine,
+  ArrowUpFromLine,
+  BarChart3,
+  Package,
+  Users,
+  Settings,
+} from "lucide-react";
+
 export default function AppLayout({
   children,
 }: {
@@ -22,17 +34,17 @@ export default function AppLayout({
     }
   }, [router]);
 
-  const menuItems = [
-    { path: "/dashboard", label: t("dashboard") },
-    { path: "/inventory", label: t("inventory") },
-    { path: "/wareview", label: t("wareview") },
-    { path: "/inbound-orders", label: t("inboundOrders") },
-    { path: "/outbound-orders", label: t("outboundOrders") },
-    { path: "/reports", label: t("reports") },
-    { path: "/materials", label: t("materials") },
-    { path: "/customers", label: t("customers") },
-    { path: "/settings", label: t("settings") },
-  ];
+const menuItems = [
+  { path: "/dashboard", label: t("dashboard"), icon: LayoutDashboard },
+  { path: "/inventory", label: t("inventory"), icon: Boxes },
+  { path: "/wareview", label: t("wareview"), icon: Eye },
+  { path: "/inbound-orders", label: t("inboundOrders"), icon: ArrowDownToLine },
+  { path: "/outbound-orders", label: t("outboundOrders"), icon: ArrowUpFromLine },
+  { path: "/reports", label: t("reports"), icon: BarChart3 },
+  { path: "/materials", label: t("materials"), icon: Package },
+  { path: "/customers", label: t("customers"), icon: Users },
+  { path: "/settings", label: t("settings"), icon: Settings },
+];
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
