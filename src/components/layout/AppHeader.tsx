@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Search, User, Settings, LogOut } from "lucide-react";
+import { Search, User, Settings, LogOut, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
@@ -22,7 +22,7 @@ export default function AppHeader({
 
   return (
     <div className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-8 relative">
-      
+
       {/* Search */}
       <button
         onClick={onOpenCommandBar}
@@ -39,22 +39,24 @@ export default function AppHeader({
       <div className="relative">
         <button
           onClick={() => setOpen((prev) => !prev)}
-          className="flex items-center gap-3 hover:bg-gray-50 px-2 py-1 rounded-lg transition"
+          className="flex items-center gap-3 px-2 py-1 rounded-lg hover:bg-gray-50 transition"
         >
           <div className="text-sm text-right">
             <p className="font-medium text-gray-900">Ahmet Yılmaz</p>
             <p className="text-xs text-gray-400">Avixa</p>
           </div>
 
-          <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-sm font-semibold select-none">
+          <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-sm font-semibold">
             A
           </div>
+
+          <ChevronDown className="w-4 h-4 text-gray-400" />
         </button>
 
         {/* Dropdown */}
         {open && (
           <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-lg shadow-lg overflow-hidden z-50">
-            
+
             <button
               onClick={() => {
                 setOpen(false);
