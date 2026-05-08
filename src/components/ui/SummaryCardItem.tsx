@@ -18,7 +18,7 @@ type SummaryCardItemProps = {
     iconBgColor = "bg-gray-200",
   }: SummaryCardItemProps) => {
     return (
-    <div className="p-4 bg-gray-50 rounded-lg text-center">
+    <div className="p-4 bg-white border border-gray-200 rounded-lg text-center">
       
       {/* Header row */}
       <div className="flex items-center justify-center gap-3 mb-4">

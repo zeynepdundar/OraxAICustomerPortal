@@ -387,10 +387,7 @@ export default function ReportsPage() {
         </Card>
       </div>
 
-      <Card className="p-5 bg-white border border-gray-200">
-        <h3 className="text-sm font-semibold text-gray-900 mb-4">
-          {t("summary")}
-        </h3>
+
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {summaryData.map((item, i) => (
@@ -404,7 +401,6 @@ export default function ReportsPage() {
             />
           ))}
         </div>
-      </Card>
     </div>
   );
 }
