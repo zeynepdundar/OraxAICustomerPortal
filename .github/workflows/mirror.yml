@@ -24,7 +24,7 @@ jobs:
             echo "TOKEN IS EMPTY ❌"
             exit 1
           else
-            echo "TOKEN EXIST ✅"
+            echo "TOKEN EXISTss ✅"
           fi
 
       - name: Push to mirror repo
