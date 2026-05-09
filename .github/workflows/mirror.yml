@@ -1,0 +1,22 @@
+name: Mirror to OraxAICustomerPortal
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to mirror repo
+        env:
+          TOKEN: ${{ secrets.MIRROR_TOKEN }}
+        run: |
+          git remote add mirror https://x-access-token:${TOKEN}@github.com/zdundar-oraxai/OraxAICustomerPortal.git
+          git push mirror main --force
