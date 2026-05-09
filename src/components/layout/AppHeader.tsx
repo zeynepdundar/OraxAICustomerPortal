@@ -31,7 +31,7 @@ export default function AppHeader({
         <Search className="w-4 h-4" />
         <span>{t("searchCommand")}</span>
         <kbd className="ml-1 text-xs bg-white border border-gray-200 rounded px-1.5 py-0.5 font-mono text-gray-400">
-          ⌘K
+          ⌘ K
         </kbd>
       </button>
       <div className="flex items-center gap-2">
