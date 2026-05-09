@@ -16,6 +16,17 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Debug token
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "TOKEN IS EMPTY ❌"
+            exit 1
+          else
+            echo "TOKEN EXISTS ✅"
+          fi
+        env:
+          TOKEN: ${{ secrets.MIRROR_TOKEN }}
+
       - name: Push to mirror repo
         run: |
           echo "Starting mirror push..."
