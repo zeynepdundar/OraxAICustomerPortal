@@ -18,5 +18,8 @@ jobs:
 
       - name: Push to mirror repo
         run: |
+          echo "Starting mirror push..."
+          git remote remove mirror || true
           git remote add mirror https://x-access-token:${{ secrets.MIRROR_TOKEN }}@github.com/zdundar-oraxai/OraxAICustomerPortal.git
           git push mirror main --force
+          echo "Mirror sync complete"
