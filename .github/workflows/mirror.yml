@@ -39,6 +39,6 @@ jobs:
 
           git remote add mirror https://x-access-token:${TOKEN}@github.com/zdundar-oraxai/OraxAICustomerPortal.git
 
-          git push mirror main --force
+          git push mirror main
 
           echo "Mirror sync complete ✅"
